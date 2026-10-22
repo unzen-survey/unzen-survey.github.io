@@ -1,0 +1,696 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Unzen Guest Survey</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=Noto+Serif+JP:wght@400;600&family=Noto+Serif+TC:wght@400;600&family=Noto+Serif+KR:wght@400;600&display=swap">
+<style>
+/* 公式サイト kyushuhtl.co.jp に合わせる：本文 Noto Serif JP・英字 Cormorant Garamond・文字 #333・地 白・差し色 #887753（ボタン角丸5px） */
+:root{--bg:#ffffff;--panel:#faf8f4;--line:#e3ddd1;--text:#333333;--muted:#6f6a61;--gold:#887753;--gold-d:#6e5f40;--gold-l:#aca087;--ink:#ffffff;--hl:#6e5f40;--red:#a33a2a}
+html,body{margin:0;background:var(--bg)}
+#us{color:var(--text);font-family:"Noto Serif JP","Hiragino Mincho ProN","Yu Mincho",serif;
+  font-size:15px;line-height:1.9;letter-spacing:.03em;max-width:560px;margin:0 auto;padding:16px 16px 48px;box-sizing:border-box;-webkit-text-size-adjust:100%}
+#us[lang="zh-Hant"]{font-family:"Noto Serif TC","Noto Serif JP","Songti TC",serif}
+#us[lang="ko"]{font-family:"Noto Serif KR","Noto Serif JP","AppleMyungjo",serif}
+#us[lang="en"]{font-family:"Noto Serif JP","Hiragino Mincho ProN",serif}
+#us *{box-sizing:border-box}
+#us button,#us input{font:inherit;color:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent}
+#us .us-proto{background:#f6f2e9;border:1px solid var(--line);color:var(--gold-d);border-radius:5px;font-size:12px;padding:6px 10px;margin-bottom:14px;text-align:center}
+#us .us-top{display:flex;flex-direction:column;align-items:center;gap:14px;margin:6px 0 30px}
+#us .us-logo img{display:block;width:180px;height:auto}
+#us .us-lang{display:flex;flex-wrap:wrap;justify-content:center;gap:6px}
+#us .us-lang button{background:none;border:1px solid var(--line);border-radius:5px;padding:2px 12px;font-size:12px;color:var(--muted);letter-spacing:.04em}
+#us .us-lang button.on{border-color:var(--gold);color:var(--gold-d)}
+#us .us-en{font-family:"Cormorant Garamond",serif;color:var(--gold);font-size:13px;letter-spacing:.12em;text-align:center;margin:0 0 2px}
+#us h1{font-weight:400;font-size:19px;line-height:1.6;margin:0 0 10px;letter-spacing:.1em;color:var(--gold);text-align:center}
+#us .us-sub{color:var(--muted);font-size:13px;margin:0 0 26px;text-align:center}
+#us .us-sec{border-top:1px solid var(--line);padding:24px 0 4px}
+#us .us-h{font-size:14.5px;font-weight:600;margin:0 0 12px;letter-spacing:.08em}
+#us .us-note{color:var(--muted);font-size:12px;margin:-6px 0 12px}
+#us .us-stars{display:flex;gap:6px;justify-content:center;margin:4px 0 6px}
+#us .us-star{background:none;border:0;padding:4px;line-height:0}
+#us .us-star svg{width:42px;height:42px;display:block}
+#us .us-star path{fill:none;stroke:var(--gold-l);stroke-width:1.3;transition:fill .15s,stroke .15s}
+#us .us-star.on path{fill:var(--gold);stroke:var(--gold)}
+#us .us-starlabel{text-align:center;color:var(--gold-d);font-size:13px;min-height:22px;margin-bottom:8px;letter-spacing:.1em}
+#us .us-chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+#us .us-chip{background:#fff;border:1px solid var(--line);border-radius:5px;padding:7px 13px;font-size:13.5px;line-height:1.35;color:var(--text);transition:background .15s,border-color .15s,opacity .15s}
+#us .us-chip.on{background:var(--gold);border-color:var(--gold);color:var(--ink)}
+#us .us-chip.bad.on{background:#4a4640;border-color:#4a4640;color:#fff}
+#us .us-chip:disabled{opacity:.4;cursor:default}
+#us .us-card{background:var(--panel);border:1px solid var(--line);border-radius:5px;padding:16px 14px 6px;margin-bottom:12px}
+#us .us-card-t{font-size:13px;color:var(--gold-d);margin-bottom:8px;letter-spacing:.08em;font-weight:600}
+#us .us-card-t.bad{color:#4a4640}
+#us .us-q{font-size:13.5px;margin:0 0 8px}
+#us .us-other{width:100%;background:#fff;border:1px solid var(--line);border-radius:5px;color:var(--text);font-size:16px;padding:8px 10px;margin:-4px 0 14px;cursor:text}
+#us .us-text{background:var(--panel);border:1px solid var(--line);border-radius:5px;padding:16px;min-height:140px;line-height:2;font-size:15px;outline:none;white-space:pre-wrap;word-break:break-word}
+#us .us-text:focus{border-color:var(--gold)}
+#us .us-hl{color:var(--hl);font-weight:600}
+#us .us-row{display:flex;justify-content:flex-end;margin:8px 0 4px}
+#us .us-link{background:none;border:0;color:var(--gold-d);font-size:13px;padding:6px 0;text-decoration:underline;text-underline-offset:4px}
+#us .us-check{display:flex;gap:10px;align-items:flex-start;font-size:13px;color:var(--muted);margin:4px 0 4px;cursor:pointer}
+#us .us-check input{margin-top:6px;accent-color:var(--gold);width:16px;height:16px;flex:none}
+#us .us-submit{display:block;width:100%;margin-top:22px;background:var(--gold);color:var(--ink);border:0;border-radius:5px;padding:14px;font-size:15px;letter-spacing:.2em}
+#us .us-submit:disabled{opacity:.35;cursor:default}
+#us .us-hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+#us .us-done{padding:6px 0 8px}
+#us .us-done h1{font-size:clamp(16px,5vw,19px)}
+#us .us-done .us-h{margin-top:8px}
+#us .us-ask{font-size:14px;line-height:2;margin:32px 0 0}
+#us .us-copy{margin-top:16px}
+#us .us-dest-row{display:flex;justify-content:center;gap:22px;margin-top:24px;flex-wrap:wrap}
+#us .us-ico{display:flex;flex-direction:column;align-items:center;gap:8px;color:var(--muted);font-size:12px;letter-spacing:.03em;text-decoration:none;max-width:84px;text-align:center;line-height:1.4}
+#us .us-ico-c{width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans",sans-serif;font-weight:700;font-size:12px;letter-spacing:0;line-height:1.1;text-align:center}
+#us .us-ico svg{width:30px;height:30px;display:block}
+#us .us-google .us-ico-c{background:#fff;border:1px solid var(--line)}
+#us .us-ikyu .us-ico-c{background:#1a1a1a;color:#e5c88a;font-family:"Noto Serif JP",serif;font-size:17px;font-weight:400}
+#us .us-rakuten .us-ico-c{background:#bf0000;font-size:11px}
+#us .us-trip .us-ico-c{background:#34e0a1;color:#000;font-size:10.5px}
+#us .us-booking .us-ico-c{background:#003580;font-size:11px}
+#us .us-ico.us-unset{opacity:.45}
+#us .us-dest-note{margin:12px 0 0}
+#us .us-foot{font-family:"Cormorant Garamond",serif;color:var(--gold-l);font-size:13px;text-align:center;margin-top:44px;letter-spacing:.25em}
+</style>
+</head>
+<body>
+<div id="us" lang="ja"></div>
+<script>
+(function(){
+  "use strict";
+
+  // ───── 設定 ─────
+  // 送信先（Google Apps Script のウェブアプリURL）。空のときは送信せず、内容をコンソールに出すだけ（試作）
+  var ENDPOINT = "";
+  // 口コミのお願いを出す星の数（5＝星5の人だけ）
+  var REVIEW_MIN_STARS = 5;
+  // 言語ごとの口コミの投稿先（左から順に並ぶ）。url が空のものは「未設定」として薄く表示（試作）
+  var DEST_BY_LANG = {ja:["ikyu","google","rakuten"], en:["trip","google","booking"], zh:["booking","google","trip"], ko:["booking","google","trip"]};
+  var GOOGLE_SVG = '<svg viewBox="0 0 48 48" aria-hidden="true"><path fill="#FFC107" d="M43.6 20.1H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 8 3l5.7-5.7C34 6.1 29.3 4 24 4 13 4 4 13 4 24s9 20 20 20 20-9 20-20c0-1.3-.1-2.6-.4-3.9z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.8 1.2 8 3l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-7.9l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.1H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.6-.4-3.9z"/></svg>';
+  var DEST = {
+    google:{url:"", icon:GOOGLE_SVG, label:{ja:"Google",en:"Google",zh:"Google",ko:"Google"}},
+    ikyu:{url:"", icon:"一休", label:{ja:"一休",en:"Ikyu",zh:"一休",ko:"잇큐"}},
+    rakuten:{url:"", icon:"楽天", label:{ja:"楽天トラベル",en:"Rakuten Travel",zh:"樂天旅遊",ko:"라쿠텐 트래블"}},
+    trip:{url:"", icon:"Trip<br>advisor", label:{ja:"Tripadvisor",en:"Tripadvisor",zh:"Tripadvisor",ko:"트립어드바이저"}},
+    booking:{url:"", icon:"Booking", label:{ja:"Booking.com",en:"Booking.com",zh:"Booking.com",ko:"Booking.com"}}
+  };
+  var LANGS = [["ja","日本語"],["en","English"],["zh","繁體中文"],["ko","한국어"]];
+  // ロゴは公式サイトのヘッダーの画像をそのまま参照（試作。本番ではホテルから受け取ったファイルを置く）
+  var LOGO = "https://kyushuhtl.co.jp/wp-content/themes/unzen_theme/images/logo.jpg";
+
+  // ───── 選択肢と文章 ─────
+  // 選択肢: [id, 日本語, 英語ボタン, 繁体字, 韓国語, 英語の文章用（省略時はボタンと同じ）]
+  function O(list){ return list.map(function(x){ return {id:x[0], ja:x[1], en:x[2], zh:x[3], ko:x[4], sen:x[5]}; }); }
+  var TERMS = {
+    bath:{ja:"客室の露天風呂",en:"In-room open-air bath",zh:"客房露天溫泉",ko:"객실 노천탕"},
+    room:{ja:"客室",en:"Room",zh:"客房",ko:"객실"},
+    dinner:{ja:"夕食",en:"Dinner",zh:"晚餐",ko:"저녁 식사"},
+    breakfast:{ja:"朝食",en:"Breakfast",zh:"早餐",ko:"아침 식사"},
+    staff:{ja:"スタッフの対応",en:"Staff",zh:"服務人員",ko:"직원 응대"},
+    view:{ja:"景色・雲仙地獄",en:"Views & Unzen Jigoku",zh:"景色・雲仙地獄",ko:"경치·운젠 지옥"},
+    calm:{ja:"静けさ・雰囲気",en:"Calm atmosphere",zh:"寧靜氛圍",ko:"조용한 분위기"},
+    lounge:{ja:"ラウンジ",en:"Lounge",zh:"交誼廳",ko:"라운지"},
+    clean:{ja:"清掃・設備",en:"Cleanliness & facilities",zh:"清潔與設備",ko:"청소·시설"},
+    checkin:{ja:"チェックイン・アウト",en:"Check-in & check-out",zh:"入住與退房",ko:"체크인·체크아웃"},
+    access:{ja:"アクセス・道案内",en:"Access & directions",zh:"交通與指引",ko:"교통·길 안내"}
+  };
+  var GOOD_ORDER = ["bath","room","dinner","breakfast","staff","view","calm","lounge"];
+  var BAD_ORDER  = ["room","bath","dinner","breakfast","staff","clean","checkin","access","lounge"];
+  var Q_GOOD = {ja:"特に良かったのは？",en:"What stood out?",zh:"最喜歡哪一點？",ko:"특히 좋았던 점은?"};
+  var Q_BAD  = {ja:"どんな点が気になりましたか？",en:"What was the issue?",zh:"哪裡需要改善？",ko:"어떤 점이 아쉬웠나요?"};
+
+  // 用語ごとの詳細（slots）とひな形（tpl）。{a} に選んだ内容が色付きで入る
+  var DETAIL = {
+    good:{
+      bath:{slots:[{k:"a",max:2,q:Q_GOOD,opts:O([
+          ["view","眺め","The view","景色","경치","the view"],
+          ["anytime","いつでも入れること","Bathing any time","隨時都能泡湯","언제든 들어갈 수 있는 점","being able to bathe whenever we liked"],
+          ["water","お湯の質","The water","泉質","온천수의 질","the quality of the water"],
+          ["private","プライベート感","Privacy","私密性","프라이빗함","the privacy"]])}],
+        tpl:{ja:["客室の露天風呂は{a}が最高で、滞在中に何度も湯に浸かりました。","部屋付きの露天風呂は、{a}が何より嬉しく、雲仙の温泉を心ゆくまで楽しめました。","客室の露天風呂がとても心地よく、滞在中に何度も入りました。"],
+             en:["The open-air bath in our room was perfect — {a} made it special, and we bathed again and again.","What we loved most about the in-room open-air bath was {a}; we enjoyed Unzen's hot spring to the full.","The open-air bath in the room was so soothing that we used it many times."],
+             zh:["客房露天溫泉最棒的是{a}，住宿期間泡了好幾次。","房內附設的露天溫泉，{a}讓人十分滿意，盡情享受了雲仙的溫泉。","客房的露天溫泉非常舒服，住宿期間泡了好幾次。"],
+             ko:["객실 노천탕에서 특히 좋았던 것은 {a}입니다. 머무는 동안 몇 번이고 들어갔습니다.","객실에 딸린 노천탕의 {a} 덕분에 운젠 온천을 마음껏 즐겼습니다.","객실 노천탕이 너무 편안해서 머무는 동안 여러 번 이용했습니다."]}},
+      room:{slots:[{k:"a",max:2,q:Q_GOOD,opts:O([
+          ["space","広さ","Spaciousness","寬敞空間","넓은 공간","the spacious layout"],
+          ["terrace","テラス","The terrace","露台","테라스","the terrace"],
+          ["bed","ベッドの寝心地","The bed","床鋪的舒適度","침대의 편안함","the comfortable bed"],
+          ["design","内装","Interior design","室內設計","인테리어","the interior design"]])}],
+        tpl:{ja:["客室は{a}が素晴らしく、部屋にいる時間そのものが贅沢でした。","{a}がとても心地よく、チェックアウトの時間が名残惜しくなりました。","客室はゆったりとしていて、くつろいだ時間を過ごせました。"],
+             en:["The room was wonderful, especially {a} — simply being there felt luxurious.","We especially loved {a}, and were sad when it was time to check out.","The room was spacious and relaxing."],
+             zh:["客房的{a}非常出色，光是待在房間裡就是一種享受。","特別喜歡{a}，退房時真有點捨不得。","客房寬敞舒適，度過了非常放鬆的時光。"],
+             ko:["객실에서 특히 좋았던 것은 {a}입니다. 방에 머무는 시간 자체가 호사였습니다.","{a} 부분이 마음에 들어 체크아웃이 아쉬울 정도였습니다.","객실이 넓고 편안해서 여유로운 시간을 보냈습니다."]}},
+      dinner:{slots:[{k:"a",max:2,q:Q_GOOD,opts:O([
+          ["taste","味","Flavour","味道","맛","the flavours"],
+          ["local","長崎・雲仙の食材","Local ingredients","長崎在地食材","나가사키 현지 식재료","the local Nagasaki ingredients"],
+          ["plating","盛り付け","Presentation","擺盤","플레이팅","the presentation"],
+          ["course","コースの流れ","The course","套餐的安排","코스 구성","the flow of the course"]])}],
+        tpl:{ja:["夕食は{a}が素晴らしく、一皿ごとに感動がありました。","夕食の{a}に感動し、一皿ごとに次が楽しみになりました。","夕食はどれも美味しく、心から満たされました。"],
+             en:["Dinner was superb, especially {a} — every course was a delight.","We were moved by {a} at dinner, and looked forward to every course.","Every dish at dinner was delicious and deeply satisfying."],
+             zh:["晚餐的{a}非常出色，每一道都令人感動。","晚餐的{a}令人感動，每一道菜都讓人期待下一道。","晚餐每道菜都很美味，吃得非常滿足。"],
+             ko:["저녁 식사에서 특히 좋았던 것은 {a}입니다. 모든 요리가 감동적이었습니다.","저녁 식사의 {a}에 감동해서 다음 요리가 계속 기대되었습니다.","저녁 식사는 모든 요리가 맛있어서 정말 만족스러웠습니다."]}},
+      breakfast:{slots:[{k:"a",max:2,q:Q_GOOD,opts:O([
+          ["taste","味","Flavour","味道","맛","the flavours"],
+          ["local","地元の食材","Local ingredients","在地食材","현지 식재료","the local ingredients"],
+          ["amount","量","Portion","份量","양","the generous portions"],
+          ["view","朝の景色の中で食べられること","Morning view","邊看晨景邊用餐","아침 경치를 보며 먹는 것","eating with the morning view"]])}],
+        tpl:{ja:["朝食は{a}が良く、気持ちのいい一日の始まりになりました。","朝食は{a}が嬉しく、朝から満たされました。","朝食がとても美味しく、気持ちよく一日を始められました。"],
+             en:["Breakfast was lovely, especially {a} — a perfect start to the day.","We really enjoyed {a} at breakfast.","Breakfast was delicious and a wonderful start to the day."],
+             zh:["早餐的{a}很棒，為一天帶來美好的開始。","早餐最喜歡的是{a}，一早就很滿足。","早餐非常美味，是美好一天的開始。"],
+             ko:["아침 식사에서 특히 좋았던 것은 {a}입니다. 기분 좋은 하루의 시작이었습니다.","아침 식사의 {a} 덕분에 아침부터 만족스러웠습니다.","아침 식사가 정말 맛있어서 기분 좋게 하루를 시작했습니다."]}},
+      staff:{slots:[{k:"a",max:2,q:Q_GOOD,opts:O([
+          ["warm","温かいおもてなし","Warm hospitality","親切的款待","따뜻한 환대","warm hospitality"],
+          ["care","さりげない気配り","Thoughtful attention","細心周到","세심한 배려","thoughtful attention"],
+          ["guide","丁寧な案内","Clear guidance","詳細的說明","친절한 안내","clear guidance"],
+          ["lang","外国語での対応","Help in my language","外語應對","외국어 응대","help in our own language"]])}],
+        tpl:{ja:["スタッフの{a}が素晴らしく、心からくつろげました。","{a}に心がこもっていて、また皆さんに会いに来たいと思いました。","スタッフの皆さんの対応が温かく、安心して過ごせました。"],
+             en:["The staff's {a} was wonderful, and we felt truly at home.","We could feel real care in the {a} we received, and would love to see the team again.","The staff were warm and welcoming throughout our stay."],
+             zh:["服務人員的{a}非常好，讓人真正放鬆下來。","從{a}中感受到滿滿的心意，很想再來看看大家。","服務人員都很親切，住得很安心。"],
+             ko:["직원분들의 {a} 덕분에 정말 편하게 쉴 수 있었습니다.","{a}에서 진심이 느껴져서 또 뵈러 오고 싶어졌습니다.","직원분들이 모두 따뜻하게 대해 주셔서 안심하고 지냈습니다."]}},
+      view:{slots:[{k:"a",max:2,q:Q_GOOD,opts:O([
+          ["jigoku","雲仙地獄の湯けむり","Steam of Unzen Jigoku","雲仙地獄的蒸氣","운젠 지옥의 수증기","the steam rising from Unzen Jigoku"],
+          ["mountain","山々の景色","Mountain scenery","群山景色","산 풍경","the mountain scenery"],
+          ["season","季節の自然","Seasonal nature","四季自然風光","계절의 자연","the seasonal nature"],
+          ["walk","周辺の散策","Walks nearby","周邊散步","주변 산책","the walks nearby"]])}],
+        tpl:{ja:["{a}が印象的で、雲仙ならではの景色を満喫しました。","{a}に、日常をすっかり忘れました。","雲仙の自然と景色に癒やされる滞在でした。"],
+             en:["We were struck by {a} — scenery you can only find in Unzen.","With {a}, we forgot all about everyday life.","The nature and scenery of Unzen were truly healing."],
+             zh:["{a}令人印象深刻，充分享受了雲仙獨有的景色。","{a}讓人完全忘卻了日常。","雲仙的自然與景色讓人身心療癒。"],
+             ko:["특히 인상적이었던 것은 {a}입니다. 운젠에서만 볼 수 있는 풍경을 만끽했습니다.","{a} 덕분에 일상을 완전히 잊을 수 있었습니다.","운젠의 자연과 경치에 힐링되는 시간이었습니다."]}},
+      calm:{slots:[{k:"a",max:2,q:Q_GOOD,opts:O([
+          ["quiet","静かさ","Quiet","寧靜","조용함","the quiet"],
+          ["small","小さな宿の落ち着き","Intimate size","小而溫馨","아담한 규모","the intimate size of the hotel"],
+          ["time","ゆっくり流れる時間","Slow pace of time","悠閒的時光","여유로운 시간","the slow pace of time"],
+          ["adult","大人の雰囲気","Grown-up atmosphere","成熟雅致的氛圍","어른스러운 분위기","the grown-up atmosphere"]])}],
+        tpl:{ja:["宿全体の{a}が心地よく、ただ過ごすだけで満たされました。","{a}に包まれて、心からリラックスできました。","落ち着いた雰囲気の中で、何もしない贅沢を味わえました。"],
+             en:["We loved {a}; simply being there was enough.","Surrounded by {a}, we could truly relax.","In the calm atmosphere, we enjoyed the luxury of doing nothing."],
+             zh:["整間旅館的{a}令人舒心，光是待著就很滿足。","在{a}中，身心徹底放鬆。","在沉靜的氛圍中，享受了什麼都不做的奢侈。"],
+             ko:["숙소 전체의 {a} 덕분에 그저 머무는 것만으로도 충분했습니다.","{a} 속에서 마음껏 쉴 수 있었습니다.","차분한 분위기 속에서 아무것도 하지 않는 사치를 누렸습니다."]}},
+      lounge:{slots:[{k:"a",max:2,q:Q_GOOD,opts:O([
+          ["drinks","ドリンク","Drinks","飲品","음료","the drinks"],
+          ["snacks","軽食","Light bites","輕食","가벼운 음식","the light bites"],
+          ["space","くつろげる空間","Relaxing space","舒適的空間","편안한 공간","the relaxing space"]])}],
+        tpl:{ja:["ラウンジの{a}が良く、くつろぎの時間が増えました。","ラウンジで過ごす時間も、旅の楽しみのひとつでした。"],
+             en:["The lounge was lovely, especially {a}.","Time in the lounge was one of the joys of the trip."],
+             zh:["交誼廳的{a}很棒，多了不少放鬆的時光。","在交誼廳度過的時光，也是旅程中的樂趣之一。"],
+             ko:["라운지에서 특히 좋았던 것은 {a}입니다.","라운지에서 보낸 시간도 여행의 즐거움 중 하나였습니다."]}}
+    },
+    bad:{
+      room:{slots:[{k:"a",max:2,q:Q_BAD,opts:O([
+          ["temp","室温","Room temperature","室溫","실내 온도","room temperature"],
+          ["noise","音","Noise","噪音","소음","noise"],
+          ["amenity","アメニティ","Amenities","備品","어메니티","amenities"],
+          ["size","広さ","Size","空間大小","넓이","size"]])}],
+        tpl:{ja:["客室の{a}が少し気になりました。","客室については、{a}がもう少し良くなると嬉しいです。","客室について、少し気になる点がありました。"],
+             en:["In the room, the {a} bothered us a little.","We hope the {a} in the room can be improved.","A few things about the room bothered us."],
+             zh:["客房的{a}讓人有點在意。","希望客房的{a}能再改善一些。","客房有些地方讓人有點在意。"],
+             ko:["객실에서 아쉬웠던 것은 {a}입니다.","객실의 {a} 부분이 조금 더 개선되면 좋겠습니다.","객실에 조금 아쉬운 점이 있었습니다."]}},
+      bath:{slots:[{k:"a",max:2,q:Q_BAD,opts:O([
+          ["temp","湯温","Water temperature","水溫","물 온도","water temperature"],
+          ["clean","清潔さ","Cleanliness","清潔度","청결","cleanliness"],
+          ["size","広さ","Size","大小","크기","size"],
+          ["guide","使い方の説明","Instructions","使用說明","이용 안내","instructions"]])}],
+        tpl:{ja:["客室の露天風呂は、{a}が少し気になりました。","露天風呂の{a}がもう少し良くなると嬉しいです。","客室の露天風呂について、少し気になる点がありました。"],
+             en:["With the in-room open-air bath, the {a} bothered us a little.","We hope the bath's {a} can be improved.","A few things about the in-room open-air bath bothered us."],
+             zh:["客房露天溫泉的{a}讓人有點在意。","希望露天溫泉的{a}能再改善。","客房的露天溫泉有些地方讓人有點在意。"],
+             ko:["객실 노천탕에서 아쉬웠던 것은 {a}입니다.","노천탕의 {a} 부분이 개선되면 좋겠습니다.","객실 노천탕에 조금 아쉬운 점이 있었습니다."]}},
+      dinner:{slots:[{k:"a",max:2,q:Q_BAD,opts:O([
+          ["season","味付け","Seasoning","調味","간","seasoning"],
+          ["amount","量","Portion size","份量","양","portion size"],
+          ["temp","料理の温度","Food temperature","菜餚溫度","요리 온도","temperature of the dishes"],
+          ["pace","提供のペース","Pace of service","上菜節奏","서빙 속도","pace of service"],
+          ["variety","品数・内容","Variety","菜色內容","메뉴 구성","variety"]])}],
+        tpl:{ja:["夕食の{a}が少し気になりました。","夕食は、{a}がもう少し良くなると嬉しいです。","夕食について、もう少し期待していました。"],
+             en:["At dinner, the {a} bothered us a little.","We hope the {a} at dinner can be improved.","We had hoped for a little more from dinner."],
+             zh:["晚餐的{a}讓人有點在意。","希望晚餐的{a}能再改善。","對晚餐原本有更高的期待。"],
+             ko:["저녁 식사에서 아쉬웠던 것은 {a}입니다.","저녁 식사의 {a} 부분이 개선되면 좋겠습니다.","저녁 식사에 조금 더 기대했습니다."]}},
+      breakfast:{slots:[{k:"a",max:2,q:Q_BAD,opts:O([
+          ["taste","味","Flavour","味道","맛","flavour"],
+          ["variety","品数","Variety","種類","종류","variety"],
+          ["hours","時間帯","Serving hours","供應時段","이용 시간","serving hours"],
+          ["amount","量","Portion size","份量","양","portion size"]])}],
+        tpl:{ja:["朝食の{a}が少し気になりました。","朝食は、{a}がもう少し良くなると嬉しいです。","朝食について、もう少し期待していました。"],
+             en:["At breakfast, the {a} bothered us a little.","We hope the {a} at breakfast can be improved.","We had hoped for a little more from breakfast."],
+             zh:["早餐的{a}讓人有點在意。","希望早餐的{a}能再改善。","對早餐原本有更高的期待。"],
+             ko:["아침 식사에서 아쉬웠던 것은 {a}입니다.","아침 식사의 {a} 부분이 개선되면 좋겠습니다.","아침 식사에 조금 더 기대했습니다."]}},
+      staff:{slots:[{k:"a",max:2,q:Q_BAD,opts:O([
+          ["wait","待ち時間","Waiting time","等候時間","대기 시간","waiting time"],
+          ["guide","案内の分かりやすさ","Clarity of guidance","說明清楚程度","안내의 명확성","clarity of guidance"],
+          ["lang","外国語での対応","Language support","外語應對","외국어 응대","language support"],
+          ["manner","言葉遣い・態度","Manner","態度","태도","manner"]])}],
+        tpl:{ja:["スタッフの対応では、{a}が少し気になりました。","{a}がもう少し良くなると、さらに快適に過ごせると思います。","スタッフの対応で、少し気になる点がありました。"],
+             en:["With the staff, the {a} bothered us a little.","If the {a} improved, the stay would be even more comfortable.","A few things about the service bothered us."],
+             zh:["服務方面，{a}讓人有點在意。","如果{a}能再改善，住起來會更舒適。","服務方面有些地方讓人有點在意。"],
+             ko:["직원 응대에서 아쉬웠던 것은 {a}입니다.","{a} 부분이 개선되면 더 편안하게 지낼 수 있을 것 같습니다.","직원 응대에 조금 아쉬운 점이 있었습니다."]}},
+      clean:{slots:[{k:"a",max:2,q:Q_BAD,opts:O([
+          ["room","客室の清掃","Room cleaning","客房清潔","객실 청소","cleaning of the room"],
+          ["shared","共用部の清掃","Shared areas","公共區域清潔","공용 공간 청소","cleaning of shared areas"],
+          ["wifi","Wi-Fi","Wi-Fi","Wi-Fi","와이파이","Wi-Fi"],
+          ["aging","設備の古さ","Aging facilities","設備老舊","시설 노후","age of the facilities"]])}],
+        tpl:{ja:["{a}が少し気になりました。","{a}について、改善されると嬉しいです。","清掃や設備について、少し気になる点がありました。"],
+             en:["The {a} bothered us a little.","We hope the {a} can be improved.","A few things about cleanliness or the facilities bothered us."],
+             zh:["{a}讓人有點在意。","希望{a}能再改善。","清潔與設備方面有些地方讓人有點在意。"],
+             ko:["아쉬웠던 것은 {a}입니다.","{a} 부분이 개선되면 좋겠습니다.","청소나 시설에 조금 아쉬운 점이 있었습니다."]}},
+      checkin:{slots:[{k:"a",max:2,q:Q_BAD,opts:O([
+          ["wait","待ち時間","Waiting time","等候時間","대기 시간","waiting time"],
+          ["explain","館内の説明","Explanation of facilities","館內說明","시설 안내","explanation of the facilities"],
+          ["time","時間の設定","Check-in/out times","入住退房時間","체크인·아웃 시간","check-in and check-out times"],
+          ["luggage","荷物の扱い","Luggage handling","行李協助","짐 처리","luggage handling"]])}],
+        tpl:{ja:["チェックイン・チェックアウトでは、{a}が少し気になりました。","チェックイン・チェックアウトの{a}がもう少し良くなると嬉しいです。","チェックイン・チェックアウトで、少し気になる点がありました。"],
+             en:["At check-in or check-out, the {a} bothered us a little.","We hope the {a} can be improved.","A few things at check-in or check-out bothered us."],
+             zh:["入住與退房時，{a}讓人有點在意。","希望入住與退房的{a}能再改善。","入住與退房時有些地方讓人有點在意。"],
+             ko:["체크인·체크아웃에서 아쉬웠던 것은 {a}입니다.","체크인·체크아웃의 {a} 부분이 개선되면 좋겠습니다.","체크인·체크아웃 때 조금 아쉬운 점이 있었습니다."]}},
+      access:{slots:[{k:"a",max:2,q:Q_BAD,opts:O([
+          ["transit","公共交通","Public transport","大眾運輸","대중교통","public transport"],
+          ["route","道順の案内","Directions","路線指引","길 안내","directions"],
+          ["parking","駐車場","Parking","停車場","주차장","parking"],
+          ["info","事前の案内","Pre-arrival info","抵達前的資訊","사전 안내","information before arrival"]])}],
+        tpl:{ja:["アクセスについては、{a}が少し分かりにくかったです。","{a}がもう少し充実していると、来やすくなると思います。","アクセスについて、少し不便を感じました。"],
+             en:["Getting here, the {a} was a little hard to figure out.","More helpful {a} would make the hotel easier to reach.","Getting to the hotel was a little inconvenient."],
+             zh:["交通方面，{a}有點不太清楚。","如果{a}能更完善，來訪會更方便。","交通方面覺得有點不便。"],
+             ko:["교통 면에서 아쉬웠던 것은 {a}입니다.","{a} 부분이 더 충실하면 찾아오기 쉬울 것 같습니다.","교통이 조금 불편했습니다."]}},
+      lounge:{slots:[{k:"a",max:2,q:Q_BAD,opts:O([
+          ["drinks","ドリンクの種類","Drink selection","飲品種類","음료 종류","drink selection"],
+          ["hours","利用時間","Opening hours","開放時間","이용 시간","opening hours"],
+          ["seats","席数","Seating","座位數","좌석 수","seating"]])}],
+        tpl:{ja:["ラウンジの{a}が少し気になりました。","ラウンジについて、少し気になる点がありました。"],
+             en:["In the lounge, the {a} bothered us a little.","A few things about the lounge bothered us."],
+             zh:["交誼廳的{a}讓人有點在意。","交誼廳有些地方讓人有點在意。"],
+             ko:["라운지에서 아쉬웠던 것은 {a}입니다.","라운지에 조금 아쉬운 점이 있었습니다."]}}
+    }
+  };
+
+  // 旅のスタイル（1つだけ・選んだときだけ文章に入る）。«»で囲んだ部分が色付きになる
+  var SCENES = [
+    {id:"anniv", ja:"記念日", en:"Anniversary", zh:"紀念日", ko:"기념일",
+     t:{ja:"«記念日»の旅で泊まりました。", en:"We stayed for our «anniversary».", zh:"這次是為了«紀念日»而來。", ko:"«기념일» 여행으로 묵었습니다."}},
+    {id:"couple", ja:"ご夫婦・カップル", en:"As a couple", zh:"夫妻・情侶", ko:"부부·커플",
+     t:{ja:"«ふたり»でゆっくり過ごす旅に選びました。", en:"We chose it for a relaxing trip «as a couple».", zh:"這次是«兩人»的悠閒旅行。", ko:"«둘이서» 여유롭게 지내는 여행으로 선택했습니다."}},
+    {id:"family", ja:"ご家族", en:"With family", zh:"家人", ko:"가족",
+     t:{ja:"«家族»旅行で泊まりました。", en:"We stayed on a «family» trip.", zh:"這次是«家族»旅行。", ko:"«가족» 여행으로 묵었습니다."}},
+    {id:"friends", ja:"ご友人", en:"With friends", zh:"朋友", ko:"친구",
+     t:{ja:"«友人»との旅で泊まりました。", en:"We stayed on a trip with «friends».", zh:"這次和«朋友»一起旅行。", ko:"«친구»와 함께한 여행으로 묵었습니다."}},
+    {id:"solo", ja:"おひとり", en:"Solo", zh:"一個人", ko:"혼자",
+     t:{ja:"«ひとり旅»で泊まりました。", en:"I stayed on a «solo» trip.", zh:"這次是«一個人»的旅行。", ko:"«혼자» 떠난 여행으로 묵었습니다."}}
+  ];
+
+  // 最初の一文・最後の一文（星の帯ごと。キー2は星1と星2で共用）
+  var OPEN = {
+    ja:{5:["雲仙の温泉で、期待をはるかに超える滞在になりました。","雲仙で過ごした時間は、忘れられない旅の思い出になりました。","心からくつろげる、雲仙の温泉宿での特別な滞在でした。"],
+        4:["雲仙の温泉で、とても満足度の高い滞在ができました。","雲仙でゆったりとした時間を過ごせる、素敵な宿でした。","雲仙の温泉旅を気持ちよく楽しめました。"],
+        3:["雲仙での滞在は、良かったところと気になったところの両方がありました。","全体としては楽しめましたが、惜しいと感じる点もありました。","雲仙の温泉宿として、期待にあと一歩届かない印象でした。"],
+        2:["正直に言うと、期待していた雲仙での滞在とは違いました。","楽しみにしていた雲仙の旅でしたが、残念ながら満足しきれませんでした。","今回の滞在は、期待していた水準に届いていないと感じました。"]},
+    en:{5:["Our stay in Unzen's hot springs far exceeded our expectations.","The time we spent in Unzen became an unforgettable travel memory.","A truly special stay at a hot spring hotel in Unzen where we could completely unwind."],
+        4:["A very satisfying stay in the hot springs of Unzen.","A lovely hotel for a relaxing time in Unzen.","We thoroughly enjoyed our hot spring trip to Unzen."],
+        3:["Our stay in Unzen had both highlights and things that bothered us.","Overall we enjoyed it, though a few things felt like missed opportunities.","As a hot spring hotel in Unzen, it fell just short of our expectations."],
+        2:["To be honest, this was not the Unzen stay we had hoped for.","We were looking forward to this trip to Unzen, but unfortunately left unsatisfied.","This stay did not reach the level we had expected."]},
+    zh:{5:["在雲仙溫泉的住宿體驗，遠遠超出了期待。","在雲仙度過的時光，成了難忘的旅行回憶。","在雲仙的溫泉旅館度過了真正放鬆的特別時光。"],
+        4:["在雲仙溫泉度過了非常滿意的住宿時光。","是一間能在雲仙悠閒度假的好旅館。","愉快地享受了這趟雲仙溫泉之旅。"],
+        3:["這次在雲仙的住宿，有滿意的地方，也有在意的地方。","整體還算愉快，但也有些可惜的地方。","作為雲仙的溫泉旅館，感覺離期待還差一點。"],
+        2:["老實說，這次和期待中的雲仙住宿體驗不太一樣。","很期待這趟雲仙之旅，可惜沒能完全滿意。","這次的住宿沒有達到原本期待的水準。"]},
+    ko:{5:["운젠 온천에서의 숙박은 기대를 훨씬 뛰어넘었습니다.","운젠에서 보낸 시간은 잊지 못할 여행의 추억이 되었습니다.","운젠의 온천 숙소에서 마음껏 쉴 수 있었던 특별한 시간이었습니다."],
+        4:["운젠 온천에서 아주 만족스러운 숙박을 했습니다.","운젠에서 여유로운 시간을 보낼 수 있는 멋진 숙소였습니다.","운젠 온천 여행을 기분 좋게 즐겼습니다."],
+        3:["이번 운젠 숙박은 좋았던 점과 아쉬운 점이 모두 있었습니다.","전체적으로는 즐거웠지만 아쉬운 점도 있었습니다.","운젠의 온천 숙소로서 기대에 조금 못 미쳤습니다."],
+        2:["솔직히 기대했던 운젠 숙박과는 달랐습니다.","기대했던 운젠 여행이었지만 아쉽게도 만족하지 못했습니다.","이번 숙박은 기대했던 수준에 미치지 못했습니다."]}
+  };
+  var CLOSE = {
+    ja:{5:["雲仙を訪れるなら、またこの宿に泊まりたいです。","季節を変えて、また雲仙に帰ってきたいと思います。","雲仙で温泉宿を探している方に、心からおすすめしたいです。"],
+        4:["また雲仙に来るときは、候補に入れたい宿です。","別の季節の雲仙も、この宿で味わってみたいです。","雲仙でゆっくり過ごしたい方におすすめできる宿です。"],
+        3:["改善された姿を、また雲仙で確かめてみたいです。","今後に期待して、また雲仙を訪れるかもしれません。","良さもあったので、これからに期待しています。"],
+        2:["今後の改善に期待しています。","この感想が、より良い宿づくりのお役に立てば幸いです。","また泊まりたいと思える宿になることを期待しています。"]},
+    en:{5:["Whenever we visit Unzen, we would love to stay here again.","We hope to come back to Unzen in another season.","We wholeheartedly recommend it to anyone looking for a hot spring stay in Unzen."],
+        4:["It is on our list for our next visit to Unzen.","We would like to experience Unzen in another season here.","We can recommend it to anyone wanting a relaxing stay in Unzen."],
+        3:["We would like to see how it improves on a future visit to Unzen.","We may return to Unzen, hoping it will be even better next time.","There were good points too, and we look forward to what comes next."],
+        2:["We hope to see improvements.","We hope this feedback helps make it an even better hotel.","We hope it becomes a place we would want to stay at again."]},
+    zh:{5:["下次來雲仙，還想再住這裡。","希望換個季節，再回到雲仙。","真心推薦給在雲仙尋找溫泉旅館的朋友。"],
+        4:["下次來雲仙時，會把這裡列入考慮。","想在這裡感受不同季節的雲仙。","推薦給想在雲仙悠閒度假的人。"],
+        3:["希望下次來雲仙時，能看到改善後的樣子。","期待之後會更好，或許會再來雲仙。","也有不錯的地方，期待今後的表現。"],
+        2:["期待今後能有所改善。","希望這些意見能幫助旅館變得更好。","期待成為讓人想再次入住的旅館。"]},
+    ko:{5:["운젠에 온다면 꼭 다시 이 숙소에 묵고 싶습니다.","다른 계절에 다시 운젠을 찾고 싶습니다.","운젠에서 온천 숙소를 찾는 분께 진심으로 추천합니다."],
+        4:["다음에 운젠에 올 때 후보에 넣고 싶은 숙소입니다.","다른 계절의 운젠도 이 숙소에서 느껴보고 싶습니다.","운젠에서 여유롭게 지내고 싶은 분께 추천합니다."],
+        3:["다음에 운젠에 오면 개선된 모습을 보고 싶습니다.","앞으로 더 좋아지기를 기대하며 다시 찾을지도 모르겠습니다.","좋은 점도 있었기에 앞으로를 기대합니다."],
+        2:["앞으로의 개선을 기대합니다.","이 의견이 더 좋은 숙소를 만드는 데 도움이 되기를 바랍니다.","다시 묵고 싶은 숙소가 되기를 기대합니다."]}
+  };
+  // 良かった点のあとに改善点を続けるときのつなぎ（en は独立した一文、他は改善点の文頭に付ける）
+  var BRIDGE = {ja:"一方で、", en:"That said, a few things could be better.", zh:"不過，", ko:"다만, "};
+
+  var UI = {
+    ja:{title:"ご宿泊ありがとうございました", sub:"今回の滞在についてお聞かせください。（約1分・匿名）", stars:"全体の満足度",
+        starLabels:["不満","やや不満","ふつう","満足","大変満足"], good:"良かったところ（2つまで）", bad:"改善してほしいところ（3つまで）",
+        detail:"もう少し詳しく教えてください（任意）", other:"その他", otherPh:"自由に入力", text:"お客様の感想",
+        textNote:"お客様に選んでいただいたキーワード（色の付いた文字）から文章を作りました。自由に書き換えられます。",
+        regen:"別の言い回しをする", regenConfirm:"書き換えた内容が消えます。作り直しますか？", scene:"今回の旅のスタイル（任意）",
+        consent:"この感想を、公式サイトなどで匿名で紹介することに同意します（任意）", submit:"送信する",
+        doneTitle:"ご意見ありがとうございました。", thanksP:"いただいた声はスタッフ全員で共有し、次のおもてなしに生かします。",
+        goodPick:"良かった点", badPick:"改善点",
+        ask:"よろしければ、この感想を口コミでシェアしていただけませんか。下のボタンを押すと文章がコピーされ、口コミの投稿画面が開きます。お客様の一言が、まだ雲仙を知らない方との出会いにつながります。",
+        copy:"文章をコピーする", copied:"コピーしました", destNote:"開いた画面の口コミ欄に貼り付けてください。", unset:"（未設定）",
+        proto:"試作版です。回答は送信されません。"},
+    en:{title:"Thank you for staying with us", sub:"Tell us about your stay (about 1 min, anonymous).", stars:"Overall satisfaction",
+        starLabels:["Poor","Fair","Good","Very good","Excellent"], good:"What did you enjoy? (up to 2)", bad:"What could be better? (up to 3)",
+        detail:"Tell us a little more (optional)", other:"Other", otherPh:"Type here", text:"Your review",
+        textNote:"We drafted this from the keywords you chose, shown in gold. Feel free to edit it.",
+        regen:"Try different wording", regenConfirm:"Your edits will be lost. Regenerate?", scene:"Who did you travel with? (optional)",
+        consent:"I agree that this review may be shared anonymously on the official website (optional)", submit:"Send",
+        doneTitle:"Thank you for your feedback.", thanksP:"We will share your words with the whole team and carry them into our hospitality.",
+        goodPick:"Enjoyed", badPick:"Could be better",
+        ask:"Would you share this review? Tap a button below to copy it and open the review page. Your words help others discover Unzen.",
+        copy:"Copy the text", copied:"Copied", destNote:"Paste the text into the review form on the page that opens.", unset:"(not set)",
+        proto:"Prototype: answers are not sent."},
+    zh:{title:"感謝您的入住", sub:"請分享這次的住宿體驗（約1分鐘・匿名）。", stars:"整體滿意度",
+        starLabels:["不滿意","有點不滿意","普通","滿意","非常滿意"], good:"滿意的地方（最多2項）", bad:"希望改善的地方（最多3項）",
+        detail:"請再告訴我們多一點（選填）", other:"其他", otherPh:"自由填寫", text:"您的感想",
+        textNote:"我們根據您選擇的金色關鍵字整理成文字，可自由修改。",
+        regen:"換個說法", regenConfirm:"修改的內容將會消失，確定要重新產生嗎？", scene:"這次的旅伴（選填）",
+        consent:"同意以匿名方式在官方網站等處介紹此感想（選填）", submit:"送出",
+        doneTitle:"感謝您的寶貴意見。", thanksP:"您的意見將與全體員工分享，用於提升我們的款待。",
+        goodPick:"滿意", badPick:"待改善",
+        ask:"如果方便的話，能否將這段感想分享為評論？按下方按鈕即可複製文字並開啟評論頁面。您的一句話，能讓更多人認識雲仙。",
+        copy:"複製文字", copied:"已複製", destNote:"請將文字貼到開啟頁面的評論欄。", unset:"（未設定）",
+        proto:"試作版：回答不會送出。"},
+    ko:{title:"숙박해 주셔서 감사합니다", sub:"이번 숙박에 대해 들려주세요. (약 1분·익명)", stars:"전체 만족도",
+        starLabels:["불만족","다소 불만족","보통","만족","매우 만족"], good:"좋았던 점 (최대 2개)", bad:"개선되었으면 하는 점 (최대 3개)",
+        detail:"조금 더 자세히 알려 주세요 (선택)", other:"기타", otherPh:"자유롭게 입력", text:"고객님의 후기",
+        textNote:"선택하신 금색 키워드로 문장을 만들었습니다. 자유롭게 수정하실 수 있습니다.",
+        regen:"다른 표현으로 바꾸기", regenConfirm:"수정한 내용이 사라집니다. 다시 만들까요?", scene:"이번 여행은 누구와 함께? (선택)",
+        consent:"이 후기를 공식 사이트 등에 익명으로 소개하는 데 동의합니다 (선택)", submit:"보내기",
+        doneTitle:"소중한 의견 감사합니다.", thanksP:"보내주신 의견은 모든 직원과 공유하여 서비스에 반영하겠습니다.",
+        goodPick:"좋았던 점", badPick:"개선점",
+        ask:"괜찮으시다면 이 후기를 리뷰로 공유해 주시겠어요? 아래 버튼을 누르면 문장이 복사되고 리뷰 작성 화면이 열립니다. 고객님의 한마디가 아직 운젠을 모르는 분들과의 만남으로 이어집니다.",
+        copy:"문장 복사하기", copied:"복사했습니다", destNote:"열린 화면의 리뷰 입력란에 붙여 넣어 주세요.", unset:"(미설정)",
+        proto:"시험판입니다. 응답은 전송되지 않습니다."}
+  };
+
+  // ───── 状態 ─────
+  var root = document.getElementById("us");
+  function detectLang(){
+    var q = (location.search.match(/[?&]lang=(ja|en|zh|ko)/) || [])[1]; if (q) return q;
+    var n = (navigator.language || "ja").toLowerCase();
+    if (n.indexOf("ja") === 0) return "ja"; if (n.indexOf("zh") === 0) return "zh"; if (n.indexOf("ko") === 0) return "ko"; return "en";
+  }
+  var S = {lang:detectLang(), stars:0, scene:"", good:[], bad:[], det:{}, picks:{}, edited:false, postHTML:"", payload:null, lastSent:"", sent:false};
+  var refs = {};
+
+  function esc(s){ return String(s).replace(/[&<>"']/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]; }); }
+  function el(tag, attrs, html){ var e = document.createElement(tag); for (var k in (attrs||{})) e.setAttribute(k, attrs[k]); if (html != null) e.innerHTML = html; return e; }
+  function L(){ return UI[S.lang]; }
+  function SEP(){ return (S.lang === "ja" || S.lang === "zh") ? "" : " "; }
+  function pick(key, n){ if (S.picks[key] == null) S.picks[key] = Math.random(); return Math.floor(S.picks[key] * n); }
+  function getDet(side, term){ var k = side + ":" + term; if (!S.det[k]) S.det[k] = {a:[], aOther:"", aOtherOn:false}; return S.det[k]; }
+  function hl(s){ return '<span class="us-hl">' + esc(s) + "</span>"; }
+  function marks(s){ return esc(s).replace(/«(.+?)»/g, '<span class="us-hl">$1</span>'); }
+
+  // 選んだ値を文章用の形にする（英語は文章用の形、他はボタンと同じ）
+  function values(side, term){
+    var slot = DETAIL[side][term].slots[0], d = getDet(side, term);
+    return d.a.map(function(id){ var o = slot.opts.filter(function(x){ return x.id === id; })[0]; return o ? (S.lang === "en" ? (o.sen || o.en.toLowerCase()) : o[S.lang]) : ""; }).filter(Boolean);
+  }
+  function joinVals(arr){
+    var h = arr.map(hl); if (h.length <= 1) return h.join("");
+    if (S.lang === "ja") return h.slice(0, -1).join("、") + "と" + h[h.length - 1];
+    if (S.lang === "zh") return h.slice(0, -1).join("、") + "和" + h[h.length - 1];
+    if (S.lang === "ko") return h.join(", ");
+    return h.slice(0, -1).join(", ") + " and " + h[h.length - 1];
+  }
+  // 「その他」に書かれた言葉は、ひな形に入れず別の一文にする
+  var END_MARK = /([。．.！!？?♪…〜～]|[\uD800-\uDBFF][\uDC00-\uDFFF]|[☀-➿])$/;
+  function freeSentence(side, term, x, n){
+    var s = x.replace(/\s+/g, " ").trim(), t = TERMS[term][S.lang], end = END_MARK.test(s);
+    if (S.lang === "ja"){
+      var lead = n ? "また、" : t + "については、";
+      if (end) return esc(lead) + hl(s);
+      if (/(です|ます|でした|ました|ません|ください|よ|ね)$/.test(s)) return esc(lead) + hl(s) + "。";
+      if (/[たいるだ]$/.test(s)) return esc(lead) + hl(s) + "と感じました。";
+      return esc(lead) + (side === "good" ? "特に" + hl(s) + "が印象に残りました。" : hl(s) + "が少し気になりました。");
+    }
+    if (S.lang === "zh") return esc(n ? "另外，" : t + "方面，") + hl(s) + (end ? "" : "。");
+    if (S.lang === "ko") return esc(n ? "또한 " : t + "에 대해서는 ") + hl(s) + (end ? "" : ".");
+    if (/^[A-Z][a-z]/.test(s) && !/^I\b/.test(s)) s = s.charAt(0).toLowerCase() + s.slice(1);
+    return esc(side === "good" ? (n ? "Another highlight: " : "What stood out about the " + t.toLowerCase() + ": ") : (n ? "Another point: " : "One thing to improve about the " + t.toLowerCase() + ": ")) + hl(s) + (end ? "" : ".");
+  }
+  function sentenceFor(side, term){
+    var conf = DETAIL[side][term], tpls = conf.tpl[S.lang], d = getDet(side, term);
+    var v = values(side, term), free = d.aOtherOn ? (d.aOther || "").trim() : "";
+    if (free && !v.length) return freeSentence(side, term, free, 0);
+    var cands = tpls.filter(function(t){ return v.length ? t.indexOf("{a}") >= 0 : t.indexOf("{a}") < 0; });
+    var t = cands[pick(side + ":" + term, cands.length)];
+    var out = esc(t).replace("{a}", joinVals(v));
+    if (free) out += SEP() + freeSentence(side, term, free, 1);
+    return out;
+  }
+  function generate(){
+    if (!S.stars) return "";
+    var parts = [], band = S.stars >= 3 ? S.stars : 2;
+    var op = OPEN[S.lang][band]; parts.push(esc(op[pick("open", op.length)]));
+    var sc = SCENES.filter(function(x){ return x.id === S.scene; })[0];
+    if (sc) parts.push(marks(sc.t[S.lang]));
+    S.good.forEach(function(t){ parts.push(sentenceFor("good", t)); });
+    S.bad.forEach(function(t, i){
+      var s = sentenceFor("bad", t);
+      if (i === 0 && S.good.length){ if (S.lang === "en") parts.push(BRIDGE.en); else s = esc(BRIDGE[S.lang]) + s; }
+      parts.push(s);
+    });
+    var cl = CLOSE[S.lang][band]; parts.push(esc(cl[pick("close", cl.length)]));
+    return parts.join(SEP());
+  }
+
+  // ───── 描画 ─────
+  var STAR = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.75 5.9 6.45.75-4.78 4.4 1.28 6.37L12 17.06 6.3 20.22l1.28-6.37L2.8 9.45l6.45-.75z"/></svg>';
+  function build(){
+    root.innerHTML = "";
+    root.setAttribute("lang", S.lang === "zh" ? "zh-Hant" : S.lang);
+    if (!ENDPOINT) root.appendChild(el("div", {"class":"us-proto"}, esc(L().proto)));
+    var top = el("div", {"class":"us-top"}, '<div class="us-logo"><img src="' + LOGO + '" alt="UNZEN KYUSHU HOTEL 雲仙九州ホテル" width="180" height="49"></div>');
+    var lang = el("div", {"class":"us-lang"});
+    LANGS.forEach(function(x){
+      var b = el("button", {type:"button", "class": S.lang === x[0] ? "on" : "", lang:x[0] === "zh" ? "zh-Hant" : x[0]}, esc(x[1]));
+      b.onclick = function(){ setLang(x[0]); };
+      lang.appendChild(b);
+    });
+    top.appendChild(lang); root.appendChild(top);
+    if (S.sent){ buildDone(); root.appendChild(el("div", {"class":"us-foot"}, "UNZEN KYUSHU HOTEL")); return; }
+    root.appendChild(el("div", {"class":"us-en"}, "Guest Survey"));
+    root.appendChild(el("h1", null, esc(L().title)));
+    root.appendChild(el("p", {"class":"us-sub"}, esc(L().sub)));
+
+    var sec = el("div", {"class":"us-sec"}); sec.appendChild(el("div", {"class":"us-h"}, esc(L().stars)));
+    var stars = el("div", {"class":"us-stars", role:"radiogroup"});
+    for (var i = 1; i <= 5; i++) (function(n){
+      var b = el("button", {type:"button", "class":"us-star", "aria-label": n + " / 5", role:"radio"}, STAR);
+      b.onclick = function(){ setStars(n); };
+      stars.appendChild(b);
+    })(i);
+    sec.appendChild(stars);
+    refs.starLabel = el("div", {"class":"us-starlabel"}); sec.appendChild(refs.starLabel);
+    root.appendChild(sec); refs.stars = stars;
+
+    refs.terms = el("div"); root.appendChild(refs.terms);
+    refs.details = el("div"); root.appendChild(refs.details);
+    refs.scene = el("div"); root.appendChild(refs.scene);
+
+    refs.sendSec = el("div", {"class":"us-sec"});
+    var chk = el("label", {"class":"us-check"});
+    refs.consent = el("input", {type:"checkbox"});
+    chk.appendChild(refs.consent); chk.appendChild(el("span", null, esc(L().consent)));
+    refs.sendSec.appendChild(chk);
+    refs.hp = el("input", {"class":"us-hp", type:"text", tabindex:"-1", autocomplete:"off", "aria-hidden":"true"});
+    refs.sendSec.appendChild(refs.hp);
+    refs.submit = el("button", {type:"button", "class":"us-submit"}, esc(L().submit));
+    refs.submit.onclick = submit;
+    refs.sendSec.appendChild(refs.submit);
+    root.appendChild(refs.sendSec);
+    root.appendChild(el("div", {"class":"us-foot"}, "UNZEN KYUSHU HOTEL"));
+    paintStars(); renderTerms(); renderDetails(); renderScene(); updateSubmit();
+  }
+  function setLang(l){
+    if (S.lang === l) return;
+    if (S.sent && S.edited && !window.confirm(L().regenConfirm)) return;
+    S.lang = l; S.edited = false;
+    if (S.sent) { S.postHTML = generate(); queueUpdate(); }
+    build();
+  }
+  function setStars(n){
+    S.stars = n;
+    if (n === 5) S.bad = [];
+    paintStars(); renderTerms(); renderDetails(); renderScene(); updateSubmit();
+  }
+  function paintStars(){
+    [].forEach.call(refs.stars.children, function(b, i){ b.classList.toggle("on", i < S.stars); b.setAttribute("aria-checked", i + 1 === S.stars ? "true" : "false"); });
+    refs.starLabel.textContent = S.stars ? L().starLabels[S.stars - 1] : "";
+  }
+  function chipGroup(list, selected, max, onToggle, cls){
+    var wrap = el("div", {"class":"us-chips"});
+    list.forEach(function(item){
+      var on = selected.indexOf(item.id) >= 0;
+      var b = el("button", {type:"button", "class":"us-chip" + (cls ? " " + cls : "") + (on ? " on" : ""), "aria-pressed": on ? "true" : "false"}, esc(item.label));
+      if (!on && selected.length >= max) b.disabled = true;
+      b.onclick = function(){ onToggle(item.id); };
+      wrap.appendChild(b);
+    });
+    return wrap;
+  }
+  function renderTerms(){
+    refs.terms.innerHTML = "";
+    if (!S.stars) return;
+    var mk = function(side, order, heading){
+      var sec = el("div", {"class":"us-sec"}); sec.appendChild(el("div", {"class":"us-h"}, esc(heading)));
+      var arr = S[side], max = side === "good" ? 2 : 3;
+      sec.appendChild(chipGroup(order.map(function(t){ return {id:t, label:TERMS[t][S.lang]}; }), arr, max, function(id){
+        var i = arr.indexOf(id); if (i >= 0) arr.splice(i, 1); else if (arr.length < max) arr.push(id);
+        renderTerms(); renderDetails();
+      }, side === "bad" ? "bad" : ""));
+      refs.terms.appendChild(sec);
+    };
+    mk("good", GOOD_ORDER, L().good);
+    if (S.stars <= 4) mk("bad", BAD_ORDER, L().bad);
+  }
+  function renderDetails(){
+    refs.details.innerHTML = "";
+    var items = S.good.map(function(t){ return ["good", t]; }).concat(S.bad.map(function(t){ return ["bad", t]; }));
+    if (!items.length) return;
+    var sec = el("div", {"class":"us-sec"}); sec.appendChild(el("div", {"class":"us-h"}, esc(L().detail)));
+    items.forEach(function(it){
+      var side = it[0], term = it[1], slot = DETAIL[side][term].slots[0], d = getDet(side, term);
+      var card = el("div", {"class":"us-card"});
+      card.appendChild(el("div", {"class":"us-card-t" + (side === "bad" ? " bad" : "")}, esc((side === "good" ? L().goodPick : L().badPick) + "｜" + TERMS[term][S.lang])));
+      card.appendChild(el("p", {"class":"us-q"}, esc(slot.q[S.lang])));
+      var list = slot.opts.map(function(o){ return {id:o.id, label:o[S.lang]}; }); list.push({id:"__other", label:L().other});
+      var selected = d.a.slice(); if (d.aOtherOn) selected.push("__other");
+      card.appendChild(chipGroup(list, selected, slot.max, function(id){
+        if (id === "__other") d.aOtherOn = !d.aOtherOn;
+        else { var i = d.a.indexOf(id); if (i >= 0) d.a.splice(i, 1); else if (selected.length < slot.max) d.a.push(id); }
+        renderDetails();
+      }, side === "bad" ? "bad" : ""));
+      if (d.aOtherOn){
+        var inp = el("input", {"class":"us-other", type:"text", maxlength:"60", placeholder:L().otherPh});
+        inp.value = d.aOther;
+        inp.addEventListener("input", function(){ d.aOther = inp.value; });
+        card.appendChild(inp);
+      }
+      sec.appendChild(card);
+    });
+    refs.details.appendChild(sec);
+  }
+  function renderScene(){
+    refs.scene.innerHTML = "";
+    if (!S.stars) return;
+    var sec = el("div", {"class":"us-sec"}); sec.appendChild(el("div", {"class":"us-h"}, esc(L().scene)));
+    sec.appendChild(chipGroup(SCENES.map(function(x){ return {id:x.id, label:x[S.lang]}; }), S.scene ? [S.scene] : [], 99, function(id){
+      S.scene = S.scene === id ? "" : id; renderScene();
+    }, ""));
+    refs.scene.appendChild(sec);
+  }
+  function updateSubmit(){ refs.submit.disabled = !S.stars; refs.sendSec.style.display = S.stars ? "" : "none"; }
+
+  // スプレッドシート用に、日本語の表示名で「用語（値・値・その他:…）」の形にまとめる
+  function detailText(side){
+    return S[side].map(function(term){
+      var slot = DETAIL[side][term].slots[0], d = getDet(side, term);
+      var v = d.a.map(function(id){ var o = slot.opts.filter(function(x){ return x.id === id; })[0]; return o ? o.ja : id; });
+      if (d.aOtherOn && d.aOther.trim()) v.push("その他:" + d.aOther.trim());
+      return TERMS[term].ja + (v.length ? "（" + v.join("・") + "）" : "");
+    }).join("\n");
+  }
+  function copyFallback(t){
+    var ta = document.createElement("textarea"); ta.value = t; ta.setAttribute("readonly", ""); ta.style.position = "fixed"; ta.style.top = "0"; ta.style.opacity = "0";
+    document.body.appendChild(ta); ta.focus(); ta.select(); ta.setSelectionRange(0, t.length);
+    var ok = false; try { ok = document.execCommand("copy"); } catch (e) {} document.body.removeChild(ta);
+    return ok;
+  }
+  function copyText(t){
+    if (copyFallback(t)) return Promise.resolve();
+    if (navigator.clipboard && window.isSecureContext) return navigator.clipboard.writeText(t);
+    return Promise.reject();
+  }
+  function plain(html){ var t = document.createElement("div"); t.innerHTML = html; return t.textContent; }
+  function currentText(){ return refs.post ? refs.post.innerText.trim() : plain(S.postHTML).trim(); }
+
+  // 送信後の画面。REVIEW_MIN_STARS 未満はお礼だけ。以上なら文章（編集可）・別の言い回し・口コミのお願い・コピー・投稿先
+  function buildDone(){
+    var box = el("div", {"class":"us-done"});
+    box.appendChild(el("div", {"class":"us-en"}, "Thank you"));
+    box.appendChild(el("h1", null, esc(L().doneTitle)));
+    if (S.stars < REVIEW_MIN_STARS){ root.appendChild(box); return; }
+    box.appendChild(el("p", {"class":"us-sub"}, esc(L().thanksP)));
+    box.appendChild(el("div", {"class":"us-h"}, esc(L().text)));
+    box.appendChild(el("p", {"class":"us-note"}, esc(L().textNote)));
+    refs.post = el("div", {"class":"us-text", contenteditable:"true", role:"textbox", "aria-multiline":"true", spellcheck:"false"});
+    refs.post.innerHTML = S.postHTML;
+    refs.post.addEventListener("input", function(){ S.edited = true; S.postHTML = refs.post.innerHTML; queueUpdate(); });
+    box.appendChild(refs.post);
+    var row = el("div", {"class":"us-row"});
+    var regen = el("button", {type:"button", "class":"us-link"}, esc(L().regen));
+    regen.onclick = function(){
+      if (S.edited && !window.confirm(L().regenConfirm)) return;
+      S.picks = {}; S.edited = false; S.postHTML = generate(); refs.post.innerHTML = S.postHTML; queueUpdate();
+    };
+    row.appendChild(regen); box.appendChild(row);
+    box.appendChild(el("p", {"class":"us-ask"}, esc(L().ask)));
+    var copyBtn = el("button", {type:"button", "class":"us-submit us-copy"}, esc(L().copy));
+    var markCopied = function(){ copyBtn.textContent = L().copied; };
+    copyBtn.onclick = function(){ flushUpdate(); copyText(currentText()).then(markCopied, function(){}); track("copy"); };
+    box.appendChild(copyBtn);
+    var row2 = el("div", {"class":"us-dest-row"});
+    DEST_BY_LANG[S.lang].forEach(function(dk){
+      var dest = DEST[dk], unset = !dest.url;
+      var a = el("a", {"class":"us-ico us-" + dk + (unset ? " us-unset" : ""), href: unset ? "#" : dest.url, target:"_blank", rel:"noopener"},
+        '<span class="us-ico-c">' + dest.icon + "</span>" + esc(dest.label[S.lang] + (unset ? L().unset : "")));
+      a.onclick = function(e){ if (unset) e.preventDefault(); flushUpdate(); copyText(currentText()).then(markCopied, function(){}); track(dk); };
+      row2.appendChild(a);
+    });
+    box.appendChild(row2);
+    box.appendChild(el("p", {"class":"us-note us-dest-note"}, esc(L().destNote)));
+    root.appendChild(box);
+  }
+
+  // ───── 送信（画面はすぐ切り替え、データは裏で送る）─────
+  function post(body, beacon){
+    if (!ENDPOINT){ console.log("[unzen-survey]", body.type || "insert", body); return; }
+    var data = JSON.stringify(body);
+    if (beacon && navigator.sendBeacon){ try { if (navigator.sendBeacon(ENDPOINT, data)) return; } catch (e) {} }
+    var tries = 0;
+    (function go(){
+      fetch(ENDPOINT, {method:"POST", mode:"no-cors", keepalive:true, headers:{"Content-Type":"text/plain;charset=utf-8"}, body:data})
+        .catch(function(){ if (++tries < 3) setTimeout(go, 1500 * tries); });
+    })();
+  }
+  function track(btn){ if (!S.payload) return; post(Object.assign({}, S.payload, {type:"click", button:btn, final:currentText(), edited:S.edited}), true); }
+  var updTimer = null;
+  function queueUpdate(){ clearTimeout(updTimer); updTimer = setTimeout(flushUpdate, 2500); }
+  function flushUpdate(beacon){
+    clearTimeout(updTimer); updTimer = null;
+    if (!S.payload) return;
+    var t = currentText(); if (t === S.lastSent) return;
+    S.lastSent = t;
+    post(Object.assign({}, S.payload, {type:"update", final:t, edited:S.edited}), beacon);
+  }
+  document.addEventListener("visibilitychange", function(){ if (document.visibilityState === "hidden") flushUpdate(true); });
+  window.addEventListener("pagehide", function(){ flushUpdate(true); });
+
+  function submit(){
+    if (refs.submit.disabled || refs.hp.value) return;
+    S.postHTML = generate();
+    var text = plain(S.postHTML).trim();
+    S.payload = {
+      id: Date.now().toString(36) + Math.random().toString(36).slice(2, 8),
+      lang:S.lang, stars:S.stars,
+      good:S.good.map(function(t){ return TERMS[t].ja; }).join("・"), goodDetail:detailText("good"),
+      bad:S.bad.map(function(t){ return TERMS[t].ja; }).join("・"), badDetail:detailText("bad"),
+      scene:(SCENES.filter(function(x){ return x.id === S.scene; })[0] || {}).ja || "",
+      generated:text, final:text, edited:false, consent:refs.consent.checked,
+      page:location.href.split("?")[0], src:(location.search.match(/[?&]src=([\w-]{1,20})/) || [])[1] || ""
+    };
+    S.lastSent = text;
+    S.sent = true; build();
+    try { window.scrollTo(0, 0); } catch (e) {}
+    post(S.payload);
+  }
+
+  window.UNZEN_SURVEY = {S:S, generate:generate, setLang:setLang, DETAIL:DETAIL, TERMS:TERMS};
+  build();
+})();
+</script>
+</body>
+</html>
