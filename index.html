@@ -46,6 +46,7 @@ html,body{margin:0;background:var(--bg)}
 #us .us-card-t{font-size:13px;color:var(--gold-d);margin-bottom:8px;letter-spacing:.08em;font-weight:600}
 #us .us-card-t.bad{color:#4a4640}
 #us .us-q{font-size:13.5px;margin:0 0 8px}
+#us .us-q2{margin-top:6px}
 #us .us-other{width:100%;background:#fff;border:1px solid var(--line);border-radius:5px;color:var(--text);font-size:16px;padding:8px 10px;margin:-4px 0 14px;cursor:text}
 #us .us-text{background:var(--panel);border:1px solid var(--line);border-radius:5px;padding:16px;min-height:140px;line-height:2;font-size:15px;outline:none;white-space:pre-wrap;word-break:break-word}
 #us .us-text:focus{border-color:var(--gold)}
@@ -102,8 +103,8 @@ html,body{margin:0;background:var(--bg)}
   var LOGO = "https://kyushuhtl.co.jp/wp-content/themes/unzen_theme/images/logo.jpg";
 
   // ───── 選択肢と文章 ─────
-  // 選択肢: [id, 日本語, 英語ボタン, 繁体字, 韓国語, 英語の文章用（省略時はボタンと同じ）]
-  function O(list){ return list.map(function(x){ return {id:x[0], ja:x[1], en:x[2], zh:x[3], ko:x[4], sen:x[5]}; }); }
+  // 選択肢: [id, 日本語, 英語ボタン, 繁体字, 韓国語, 英語の文章用（省略時はボタンと同じ）, {ja/zh/ko の文章用}（任意）]
+  function O(list){ return list.map(function(x){ return {id:x[0], ja:x[1], en:x[2], zh:x[3], ko:x[4], sen:x[5], s:x[6]}; }); }
   var TERMS = {
     bath:{ja:"客室の露天風呂",en:"In-room open-air bath",zh:"客房露天溫泉",ko:"객실 노천탕"},
     room:{ja:"客室",en:"Room",zh:"客房",ko:"객실"},
@@ -111,8 +112,8 @@ html,body{margin:0;background:var(--bg)}
     breakfast:{ja:"朝食",en:"Breakfast",zh:"早餐",ko:"아침 식사"},
     staff:{ja:"スタッフの対応",en:"Staff",zh:"服務人員",ko:"직원 응대"},
     view:{ja:"景色・雲仙地獄",en:"Views & Unzen Jigoku",zh:"景色・雲仙地獄",ko:"경치·운젠 지옥"},
-    calm:{ja:"静けさ・雰囲気",en:"Calm atmosphere",zh:"寧靜氛圍",ko:"조용한 분위기"},
-    lounge:{ja:"ラウンジ",en:"Lounge",zh:"交誼廳",ko:"라운지"},
+    calm:{ja:"館内の雰囲気",en:"Atmosphere",zh:"館內氛圍",ko:"관내 분위기"},
+    lounge:{ja:"館内スペース",en:"Hotel spaces",zh:"館內空間",ko:"관내 공간"},
     clean:{ja:"清掃・設備",en:"Cleanliness & facilities",zh:"清潔與設備",ko:"청소·시설"},
     checkin:{ja:"チェックイン・アウト",en:"Check-in & check-out",zh:"入住與退房",ko:"체크인·체크아웃"},
     access:{ja:"アクセス・道案内",en:"Access & directions",zh:"交通與指引",ko:"교통·길 안내"}
@@ -138,25 +139,28 @@ html,body{margin:0;background:var(--bg)}
           ["space","広さ","Spaciousness","寬敞空間","넓은 공간","the spacious layout"],
           ["terrace","テラス","The terrace","露台","테라스","the terrace"],
           ["bed","ベッドの寝心地","The bed","床鋪的舒適度","침대의 편안함","the comfortable bed"],
-          ["design","内装","Interior design","室內設計","인테리어","the interior design"]])}],
+          ["design","デザイン","Design","設計","디자인","the design"],
+          ["outlook","眺望","The view","景觀","전망","the view from the room"]])}],
         tpl:{ja:["客室は{a}が素晴らしく、部屋にいる時間そのものが贅沢でした。","{a}がとても心地よく、チェックアウトの時間が名残惜しくなりました。","客室はゆったりとしていて、くつろいだ時間を過ごせました。"],
              en:["The room was wonderful, especially {a} — simply being there felt luxurious.","We especially loved {a}, and were sad when it was time to check out.","The room was spacious and relaxing."],
              zh:["客房的{a}非常出色，光是待在房間裡就是一種享受。","特別喜歡{a}，退房時真有點捨不得。","客房寬敞舒適，度過了非常放鬆的時光。"],
              ko:["객실에서 특히 좋았던 것은 {a}입니다. 방에 머무는 시간 자체가 호사였습니다.","{a} 부분이 마음에 들어 체크아웃이 아쉬울 정도였습니다.","객실이 넓고 편안해서 여유로운 시간을 보냈습니다."]}},
       dinner:{slots:[{k:"a",max:2,q:Q_GOOD,opts:O([
           ["taste","味","Flavour","味道","맛","the flavours"],
-          ["local","長崎・雲仙の食材","Local ingredients","長崎在地食材","나가사키 현지 식재료","the local Nagasaki ingredients"],
-          ["plating","盛り付け","Presentation","擺盤","플레이팅","the presentation"],
-          ["course","コースの流れ","The course","套餐的安排","코스 구성","the flow of the course"]])}],
-        tpl:{ja:["夕食は{a}が素晴らしく、一皿ごとに感動がありました。","夕食の{a}に感動し、一皿ごとに次が楽しみになりました。","夕食はどれも美味しく、心から満たされました。"],
-             en:["Dinner was superb, especially {a} — every course was a delight.","We were moved by {a} at dinner, and looked forward to every course.","Every dish at dinner was delicious and deeply satisfying."],
-             zh:["晚餐的{a}非常出色，每一道都令人感動。","晚餐的{a}令人感動，每一道菜都讓人期待下一道。","晚餐每道菜都很美味，吃得非常滿足。"],
-             ko:["저녁 식사에서 특히 좋았던 것은 {a}입니다. 모든 요리가 감동적이었습니다.","저녁 식사의 {a}에 감동해서 다음 요리가 계속 기대되었습니다.","저녁 식사는 모든 요리가 맛있어서 정말 만족스러웠습니다."]}},
+          ["local","長崎・雲仙の食材","Local ingredients","長崎・雲仙食材","나가사키·운젠 식재료","the local Nagasaki and Unzen ingredients"],
+          ["setting","空間・景色","Setting & view","空間與景色","공간과 경치","the setting and the view"],
+          ["temp","温度","Temperature","溫度","온도","the dishes served at just the right temperature",{ja:"料理の温度",zh:"菜餚溫度",ko:"요리 온도"}],
+          ["volume","ボリューム感","Portions","份量感","푸짐함","the satisfying portions"],
+          ["drinks","ドリンクメニュー","Drink menu","飲品菜單","음료 메뉴","the drink menu"]])}],
+        tpl:{ja:["夕食は{a}が特に良く、一皿ごとに感動がありました。","夕食では{a}に満足し、次の一皿が楽しみになりました。","夕食はどれも美味しく、心から満たされました。"],
+             en:["Dinner was superb, especially {a} — every course was a delight.","At dinner, we were very happy with {a}, and looked forward to every course.","Every dish at dinner was delicious and deeply satisfying."],
+             zh:["晚餐的{a}非常出色，每一道都令人感動。","晚餐的{a}讓人很滿意，每一道菜都讓人期待下一道。","晚餐每道菜都很美味，吃得非常滿足。"],
+             ko:["저녁 식사에서 특히 좋았던 것은 {a}입니다. 모든 요리가 감동적이었습니다.","저녁 식사의 {a}에 만족해서 다음 요리가 계속 기대되었습니다.","저녁 식사는 모든 요리가 맛있어서 정말 만족스러웠습니다."]}},
       breakfast:{slots:[{k:"a",max:2,q:Q_GOOD,opts:O([
           ["taste","味","Flavour","味道","맛","the flavours"],
-          ["local","地元の食材","Local ingredients","在地食材","현지 식재료","the local ingredients"],
-          ["amount","量","Portion","份量","양","the generous portions"],
-          ["view","朝の景色の中で食べられること","Morning view","邊看晨景邊用餐","아침 경치를 보며 먹는 것","eating with the morning view"]])}],
+          ["local","長崎・雲仙の食材","Local ingredients","長崎・雲仙食材","나가사키·운젠 식재료","the local Nagasaki and Unzen ingredients"],
+          ["setting","空間・景色","Setting & view","空間與景色","공간과 경치","the setting and the morning view"],
+          ["volume","ボリューム感","Portions","份量感","푸짐함","the satisfying portions"]])}],
         tpl:{ja:["朝食は{a}が良く、気持ちのいい一日の始まりになりました。","朝食は{a}が嬉しく、朝から満たされました。","朝食がとても美味しく、気持ちよく一日を始められました。"],
              en:["Breakfast was lovely, especially {a} — a perfect start to the day.","We really enjoyed {a} at breakfast.","Breakfast was delicious and a wonderful start to the day."],
              zh:["早餐的{a}很棒，為一天帶來美好的開始。","早餐最喜歡的是{a}，一早就很滿足。","早餐非常美味，是美好一天的開始。"],
@@ -166,6 +170,8 @@ html,body{margin:0;background:var(--bg)}
           ["care","さりげない気配り","Thoughtful attention","細心周到","세심한 배려","thoughtful attention"],
           ["guide","丁寧な案内","Clear guidance","詳細的說明","친절한 안내","clear guidance"],
           ["lang","外国語での対応","Help in my language","外語應對","외국어 응대","help in our own language"]])}],
+        note:{q:{ja:"特に心に残ったスタッフがいましたらお知らせください",en:"If any staff member made your stay memorable, please let us know.",zh:"如有特別讓您印象深刻的服務人員，請告訴我們。",ko:"특히 기억에 남는 직원이 있다면 알려 주세요."},
+              ph:{ja:"お名前や特徴など（任意）",en:"Name or description (optional)",zh:"姓名或特徵等（選填）",ko:"이름이나 특징 등 (선택)"}},
         tpl:{ja:["スタッフの{a}が素晴らしく、心からくつろげました。","{a}に心がこもっていて、また皆さんに会いに来たいと思いました。","スタッフの皆さんの対応が温かく、安心して過ごせました。"],
              en:["The staff's {a} was wonderful, and we felt truly at home.","We could feel real care in the {a} we received, and would love to see the team again.","The staff were warm and welcoming throughout our stay."],
              zh:["服務人員的{a}非常好，讓人真正放鬆下來。","從{a}中感受到滿滿的心意，很想再來看看大家。","服務人員都很親切，住得很安心。"],
@@ -173,7 +179,7 @@ html,body{margin:0;background:var(--bg)}
       view:{slots:[{k:"a",max:2,q:Q_GOOD,opts:O([
           ["jigoku","雲仙地獄の湯けむり","Steam of Unzen Jigoku","雲仙地獄的蒸氣","운젠 지옥의 수증기","the steam rising from Unzen Jigoku"],
           ["mountain","山々の景色","Mountain scenery","群山景色","산 풍경","the mountain scenery"],
-          ["season","季節の自然","Seasonal nature","四季自然風光","계절의 자연","the seasonal nature"],
+          ["season","季節感","Seasonal feel","季節感","계절감","the feel of the season"],
           ["walk","周辺の散策","Walks nearby","周邊散步","주변 산책","the walks nearby"]])}],
         tpl:{ja:["{a}が印象的で、雲仙ならではの景色を満喫しました。","{a}に、日常をすっかり忘れました。","雲仙の自然と景色に癒やされる滞在でした。"],
              en:["We were struck by {a} — scenery you can only find in Unzen.","With {a}, we forgot all about everyday life.","The nature and scenery of Unzen were truly healing."],
@@ -188,14 +194,18 @@ html,body{margin:0;background:var(--bg)}
              en:["We loved {a}; simply being there was enough.","Surrounded by {a}, we could truly relax.","In the calm atmosphere, we enjoyed the luxury of doing nothing."],
              zh:["整間旅館的{a}令人舒心，光是待著就很滿足。","在{a}中，身心徹底放鬆。","在沉靜的氛圍中，享受了什麼都不做的奢侈。"],
              ko:["숙소 전체의 {a} 덕분에 그저 머무는 것만으로도 충분했습니다.","{a} 속에서 마음껏 쉴 수 있었습니다.","차분한 분위기 속에서 아무것도 하지 않는 사치를 누렸습니다."]}},
-      lounge:{slots:[{k:"a",max:2,q:Q_GOOD,opts:O([
-          ["drinks","ドリンク","Drinks","飲品","음료","the drinks"],
-          ["snacks","軽食","Light bites","輕食","가벼운 음식","the light bites"],
-          ["space","くつろげる空間","Relaxing space","舒適的空間","편안한 공간","the relaxing space"]])}],
-        tpl:{ja:["ラウンジの{a}が良く、くつろぎの時間が増えました。","ラウンジで過ごす時間も、旅の楽しみのひとつでした。"],
-             en:["The lounge was lovely, especially {a}.","Time in the lounge was one of the joys of the trip."],
-             zh:["交誼廳的{a}很棒，多了不少放鬆的時光。","在交誼廳度過的時光，也是旅程中的樂趣之一。"],
-             ko:["라운지에서 특히 좋았던 것은 {a}입니다.","라운지에서 보낸 시간도 여행의 즐거움 중 하나였습니다."]}}
+      // 館内スペース＝2Fラウンジ・ルーフトップラウンジ・庭園
+      lounge:{slots:[{k:"a",max:2,q:{ja:"ラウンジや庭園で特に良かったのは？",en:"What stood out in the lounges and garden?",zh:"在交誼廳和庭園中最喜歡哪一點？",ko:"라운지와 정원에서 특히 좋았던 점은?"},opts:O([
+          ["welcome","ウェルカムサービス","Welcome service","迎賓服務","웰컴 서비스","the welcome service"],
+          ["freedrink","フリードリンク","Free drinks","免費飲品","무료 음료","the free drinks"],
+          ["kakuni","角煮饅","Kakuni bun","角煮包","가쿠니 만두","the kakuni buns (braised pork buns)"],
+          ["cocktail","雲仙カクテル","Unzen cocktail","雲仙雞尾酒","운젠 칵테일","the Unzen cocktail"],
+          ["yashoku","夜食","Late-night snack","宵夜","야식","the late-night snack"],
+          ["smoothie","朝のスムージー","Morning smoothie","早晨果昔","아침 스무디","the morning smoothie"]])}],
+        tpl:{ja:["{a}が嬉しく、館内で過ごす時間も旅の楽しみになりました。","館内で楽しめる{a}が印象に残りました。","ラウンジや庭園で過ごす時間も、旅の楽しみのひとつでした。"],
+             en:["We loved {a} — time spent around the hotel became part of the joy of the trip.","We especially enjoyed {a} in the lounges.","Time in the lounges and garden was one of the joys of the trip."],
+             zh:["{a}讓人很開心，在館內度過的時光也成了旅程的樂趣。","館內提供的{a}令人印象深刻。","在交誼廳和庭園度過的時光，也是旅程中的樂趣之一。"],
+             ko:["특히 좋았던 것은 {a}입니다. 관내에서 보내는 시간도 여행의 즐거움이었습니다.","관내에서 즐긴 {a} 덕분에 머무는 시간이 더 즐거웠습니다.","라운지와 정원에서 보낸 시간도 여행의 즐거움 중 하나였습니다."]}}
     },
     bad:{
       room:{slots:[{k:"a",max:2,q:Q_BAD,opts:O([
@@ -275,10 +285,10 @@ html,body{margin:0;background:var(--bg)}
           ["drinks","ドリンクの種類","Drink selection","飲品種類","음료 종류","drink selection"],
           ["hours","利用時間","Opening hours","開放時間","이용 시간","opening hours"],
           ["seats","席数","Seating","座位數","좌석 수","seating"]])}],
-        tpl:{ja:["ラウンジの{a}が少し気になりました。","ラウンジについて、少し気になる点がありました。"],
-             en:["In the lounge, the {a} bothered us a little.","A few things about the lounge bothered us."],
-             zh:["交誼廳的{a}讓人有點在意。","交誼廳有些地方讓人有點在意。"],
-             ko:["라운지에서 아쉬웠던 것은 {a}입니다.","라운지에 조금 아쉬운 점이 있었습니다."]}}
+        tpl:{ja:["館内スペースの{a}が少し気になりました。","ラウンジや庭園について、少し気になる点がありました。"],
+             en:["In the lounges and garden, the {a} bothered us a little.","A few things about the lounges and garden bothered us."],
+             zh:["館內空間的{a}讓人有點在意。","交誼廳和庭園有些地方讓人有點在意。"],
+             ko:["관내 공간에서 아쉬웠던 것은 {a}입니다.","라운지와 정원에 조금 아쉬운 점이 있었습니다."]}}
     }
   };
 
@@ -398,14 +408,14 @@ html,body{margin:0;background:var(--bg)}
   function L(){ return UI[S.lang]; }
   function SEP(){ return (S.lang === "ja" || S.lang === "zh") ? "" : " "; }
   function pick(key, n){ if (S.picks[key] == null) S.picks[key] = Math.random(); return Math.floor(S.picks[key] * n); }
-  function getDet(side, term){ var k = side + ":" + term; if (!S.det[k]) S.det[k] = {a:[], aOther:"", aOtherOn:false}; return S.det[k]; }
+  function getDet(side, term){ var k = side + ":" + term; if (!S.det[k]) S.det[k] = {a:[], aOther:"", aOtherOn:false, note:""}; return S.det[k]; }
   function hl(s){ return '<span class="us-hl">' + esc(s) + "</span>"; }
   function marks(s){ return esc(s).replace(/«(.+?)»/g, '<span class="us-hl">$1</span>'); }
 
   // 選んだ値を文章用の形にする（英語は文章用の形、他はボタンと同じ）
   function values(side, term){
     var slot = DETAIL[side][term].slots[0], d = getDet(side, term);
-    return d.a.map(function(id){ var o = slot.opts.filter(function(x){ return x.id === id; })[0]; return o ? (S.lang === "en" ? (o.sen || o.en.toLowerCase()) : o[S.lang]) : ""; }).filter(Boolean);
+    return d.a.map(function(id){ var o = slot.opts.filter(function(x){ return x.id === id; })[0]; return o ? (S.lang === "en" ? (o.sen || o.en.toLowerCase()) : ((o.s && o.s[S.lang]) || o[S.lang])) : ""; }).filter(Boolean);
   }
   function joinVals(arr){
     var h = arr.map(hl); if (h.length <= 1) return h.join("");
@@ -569,6 +579,14 @@ html,body{margin:0;background:var(--bg)}
         inp.addEventListener("input", function(){ d.aOther = inp.value; });
         card.appendChild(inp);
       }
+      var note = DETAIL[side][term].note;
+      if (note){
+        card.appendChild(el("p", {"class":"us-q us-q2"}, esc(note.q[S.lang])));
+        var ni = el("input", {"class":"us-other", type:"text", maxlength:"60", placeholder:note.ph[S.lang]});
+        ni.value = d.note;
+        ni.addEventListener("input", function(){ d.note = ni.value; });
+        card.appendChild(ni);
+      }
       sec.appendChild(card);
     });
     refs.details.appendChild(sec);
@@ -590,6 +608,7 @@ html,body{margin:0;background:var(--bg)}
       var slot = DETAIL[side][term].slots[0], d = getDet(side, term);
       var v = d.a.map(function(id){ var o = slot.opts.filter(function(x){ return x.id === id; })[0]; return o ? o.ja : id; });
       if (d.aOtherOn && d.aOther.trim()) v.push("その他:" + d.aOther.trim());
+      if (d.note && d.note.trim()) v.push("心に残ったスタッフ:" + d.note.trim());
       return TERMS[term].ja + (v.length ? "（" + v.join("・") + "）" : "");
     }).join("\n");
   }
@@ -679,6 +698,7 @@ html,body{margin:0;background:var(--bg)}
       good:S.good.map(function(t){ return TERMS[t].ja; }).join("・"), goodDetail:detailText("good"),
       bad:S.bad.map(function(t){ return TERMS[t].ja; }).join("・"), badDetail:detailText("bad"),
       scene:(SCENES.filter(function(x){ return x.id === S.scene; })[0] || {}).ja || "",
+      staffNote:S.good.indexOf("staff") >= 0 ? getDet("good", "staff").note.trim().slice(0, 60) : "",
       generated:text, final:text, edited:false, consent:refs.consent.checked,
       page:location.href.split("?")[0], src:(location.search.match(/[?&]src=([\w-]{1,20})/) || [])[1] || ""
     };
