@@ -63,17 +63,18 @@ html,body{margin:0;background:var(--bg)}
 #us .us-done .us-h{margin-top:8px}
 #us .us-ask{font-size:14px;line-height:2;margin:32px 0 0}
 #us .us-copy{margin-top:16px}
-#us .us-dest-row{display:flex;justify-content:center;gap:22px;margin-top:24px;flex-wrap:wrap}
-#us .us-ico{display:flex;flex-direction:column;align-items:center;gap:8px;color:var(--muted);font-size:12px;letter-spacing:.03em;text-decoration:none;max-width:84px;text-align:center;line-height:1.4}
-#us .us-ico-c{width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans",sans-serif;font-weight:700;font-size:12px;letter-spacing:0;line-height:1.1;text-align:center}
+#us .us-dest-row{display:grid;grid-template-columns:repeat(var(--n,3),minmax(0,1fr));gap:8px;margin-top:24px;justify-items:center}
+#us .us-ico{display:flex;flex-direction:column;align-items:center;gap:8px;color:var(--muted);font-size:11.5px;letter-spacing:.02em;text-decoration:none;text-align:center;line-height:1.4;width:100%}
+#us .us-ico-c{width:58px;height:58px;border-radius:50%;display:flex;align-items:center;justify-content:center;overflow:hidden;background:#fff;border:1px solid var(--line)}
+#us .us-ico-c img{display:block}
+#us .us-ico-c img.us-fill{width:100%;height:100%;object-fit:cover}
+#us .us-ico-c img.us-fit{width:76%;height:auto}
+#us .us-ico-c img.us-mark{width:46%;height:auto}
 #us .us-ico svg{width:30px;height:30px;display:block}
-#us .us-google .us-ico-c{background:#fff;border:1px solid var(--line)}
-#us .us-ikyu .us-ico-c{background:#1a1a1a;color:#e5c88a;font-family:"Noto Serif JP",serif;font-size:17px;font-weight:400}
-#us .us-rakuten .us-ico-c{background:#bf0000;font-size:11px}
-#us .us-trip .us-ico-c{background:#34e0a1;color:#000;font-size:10.5px}
-#us .us-booking .us-ico-c{background:#003580;font-size:11px}
-#us .us-ico.us-unset{opacity:.45}
-#us .us-dest-note{margin:12px 0 0}
+#us .us-howto{margin:16px 0 0;padding:12px 14px;background:var(--panel);border:1px solid var(--line);border-radius:5px;font-size:12px;color:var(--muted);line-height:1.8}
+#us .us-howto b{color:var(--text);font-weight:600}
+#us .us-howto p{margin:0 0 4px}
+#us .us-howto p:last-child{margin:0}
 #us .us-foot{font-family:"Cormorant Garamond",serif;color:var(--gold-l);font-size:13px;text-align:center;margin-top:44px;letter-spacing:.25em}
 </style>
 </head>
@@ -89,14 +90,25 @@ html,body{margin:0;background:var(--bg)}
   // 口コミのお願いを出す星の数（5＝星5の人だけ）
   var REVIEW_MIN_STARS = 5;
   // 言語ごとの口コミの投稿先（左から順に並ぶ）。url が空のものは「未設定」として薄く表示（試作）
-  var DEST_BY_LANG = {ja:["ikyu","google","rakuten"], en:["trip","google","booking"], zh:["booking","google","trip"], ko:["booking","google","trip"]};
+  // 言語ごとの口コミの投稿先（左から順に並ぶ・ホテル指定 2026-10-30）。ロゴは各社の公式サイトのアイコン・ロゴ（img/）
+  var DEST_BY_LANG = {ja:["google","rakuten","jalan","ikyu"], en:["google","booking","expedia"], zh:["google","booking","expedia"], ko:["google","booking","expedia"]};
   var GOOGLE_SVG = '<svg viewBox="0 0 48 48" aria-hidden="true"><path fill="#FFC107" d="M43.6 20.1H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 8 3l5.7-5.7C34 6.1 29.3 4 24 4 13 4 4 13 4 24s9 20 20 20 20-9 20-20c0-1.3-.1-2.6-.4-3.9z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.8 1.2 8 3l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-7.9l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.1H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.6-.4-3.9z"/></svg>';
   var DEST = {
-    google:{url:"", icon:GOOGLE_SVG, label:{ja:"Google",en:"Google",zh:"Google",ko:"Google"}},
-    ikyu:{url:"", icon:"一休", label:{ja:"一休",en:"Ikyu",zh:"一休",ko:"잇큐"}},
-    rakuten:{url:"", icon:"楽天", label:{ja:"楽天トラベル",en:"Rakuten Travel",zh:"樂天旅遊",ko:"라쿠텐 트래블"}},
-    trip:{url:"", icon:"Trip<br>advisor", label:{ja:"Tripadvisor",en:"Tripadvisor",zh:"Tripadvisor",ko:"트립어드바이저"}},
-    booking:{url:"", icon:"Booking", label:{ja:"Booking.com",en:"Booking.com",zh:"Booking.com",ko:"Booking.com"}}
+    google:{url:"https://g.page/r/CUHKEhvFT9YaEAE/review", icon:GOOGLE_SVG,
+      label:{ja:"Google",en:"Google",zh:"Google",ko:"Google"},
+      how:{ja:"開いた画面の口コミ欄にそのまま貼り付けてください。",en:"Paste the text into the review box that opens.",zh:"請直接貼到開啟頁面的評論欄。",ko:"열린 화면의 리뷰 입력란에 그대로 붙여 넣어 주세요."}},
+    rakuten:{url:"https://travel.rakuten.co.jp/", icon:'<img class="us-fill" src="img/rakuten.png" alt="">',
+      label:{ja:"楽天トラベル"}, how:{ja:"ログイン → 予約確認／過去の予約 → 該当の予約 → クチコミ投稿"}},
+    jalan:{url:"https://www.jalan.net/jalan/doc/howto/03yoyaku.html", icon:'<img class="us-fit" src="img/jalan.svg" alt="">',
+      label:{ja:"じゃらん"}, how:{ja:"「照会・変更・キャンセル」→ ログイン → 予約一覧 → 該当の予約 → クチコミ投稿"}},
+    ikyu:{url:"https://my.ikyu.com/", icon:'<img class="us-fill" src="img/ikyu.jpg" alt="">',
+      label:{ja:"一休.com"}, how:{ja:"ログイン → 予約一覧 → 該当の予約 → クチコミ投稿"}},
+    booking:{url:"https://www.booking.com/signin.ja.html", icon:'<img class="us-fill" src="img/booking.png" alt="">',
+      label:{en:"Booking.com",zh:"Booking.com",ko:"Booking.com"},
+      how:{en:"Sign in → your past stays → write a review",zh:"登入 → 已入住的訂單 → 撰寫評語",ko:"로그인 → 숙박 완료된 예약 → 후기 작성"}},
+    expedia:{url:"https://www.expedia.co.jp/trips", icon:'<img class="us-mark" src="img/expedia.svg" alt="">',
+      label:{en:"Expedia",zh:"Expedia",ko:"Expedia"},
+      how:{en:"Sign in → Past trips → your booking → write a review",zh:"登入 → 過去的行程 → 該筆訂單 → 撰寫評論",ko:"로그인 → 지난 여행 → 해당 예약 → 후기 작성"}}
   };
   var LANGS = [["ja","日本語"],["en","English"],["zh","繁體中文"],["ko","한국어"]];
   // ロゴは公式サイトのヘッダーの画像をそのまま参照（試作。本番ではホテルから受け取ったファイルを置く）
@@ -355,8 +367,8 @@ html,body{margin:0;background:var(--bg)}
         consent:"この感想を、公式サイトなどで匿名で紹介することに同意します（任意）", submit:"送信する",
         doneTitle:"ご意見ありがとうございました。", thanksP:"いただいた声はスタッフ全員で共有し、次のおもてなしに生かします。",
         goodPick:"良かった点", badPick:"改善点",
-        ask:"よろしければ、この感想を口コミでシェアしていただけませんか。下のボタンを押すと文章がコピーされ、口コミの投稿画面が開きます。お客様の一言が、まだ雲仙を知らない方との出会いにつながります。",
-        copy:"文章をコピーする", copied:"コピーしました", destNote:"開いた画面の口コミ欄に貼り付けてください。", unset:"（未設定）",
+        ask:"よろしければ、この感想を口コミでシェアしていただけませんか。下のボタンを押すと文章がコピーされ、口コミを投稿できるサイトが開きます。お客様の一言が、まだ雲仙を知らない方との出会いにつながります。",
+        copy:"文章をコピーする", copied:"コピーしました", howTitle:"投稿のしかた", unset:"（未設定）",
         proto:"試作版です。回答は送信されません。"},
     en:{title:"Thank you for staying with us", sub:"Tell us about your stay (about 1 min, anonymous).", stars:"Overall satisfaction",
         starLabels:["Poor","Fair","Good","Very good","Excellent"], good:"What did you enjoy? (up to 2)", bad:"What could be better? (up to 3)",
@@ -366,8 +378,8 @@ html,body{margin:0;background:var(--bg)}
         consent:"I agree that this review may be shared anonymously on the official website (optional)", submit:"Send",
         doneTitle:"Thank you for your feedback.", thanksP:"We will share your words with the whole team and carry them into our hospitality.",
         goodPick:"Enjoyed", badPick:"Could be better",
-        ask:"Would you share this review? Tap a button below to copy it and open the review page. Your words help others discover Unzen.",
-        copy:"Copy the text", copied:"Copied", destNote:"Paste the text into the review form on the page that opens.", unset:"(not set)",
+        ask:"Would you share this review? Tap a button below to copy it and open the site. Your words help others discover Unzen.",
+        copy:"Copy the text", copied:"Copied", howTitle:"How to post", unset:"(not set)",
         proto:"Prototype: answers are not sent."},
     zh:{title:"感謝您的入住", sub:"請分享這次的住宿體驗（約1分鐘・匿名）。", stars:"整體滿意度",
         starLabels:["不滿意","有點不滿意","普通","滿意","非常滿意"], good:"滿意的地方（最多2項）", bad:"希望改善的地方（最多3項）",
@@ -377,8 +389,8 @@ html,body{margin:0;background:var(--bg)}
         consent:"同意以匿名方式在官方網站等處介紹此感想（選填）", submit:"送出",
         doneTitle:"感謝您的寶貴意見。", thanksP:"您的意見將與全體員工分享，用於提升我們的款待。",
         goodPick:"滿意", badPick:"待改善",
-        ask:"如果方便的話，能否將這段感想分享為評論？按下方按鈕即可複製文字並開啟評論頁面。您的一句話，能讓更多人認識雲仙。",
-        copy:"複製文字", copied:"已複製", destNote:"請將文字貼到開啟頁面的評論欄。", unset:"（未設定）",
+        ask:"如果方便的話，能否將這段感想分享為評論？按下方按鈕即可複製文字並開啟網站。您的一句話，能讓更多人認識雲仙。",
+        copy:"複製文字", copied:"已複製", howTitle:"發表方式", unset:"（未設定）",
         proto:"試作版：回答不會送出。"},
     ko:{title:"숙박해 주셔서 감사합니다", sub:"이번 숙박에 대해 들려주세요. (약 1분·익명)", stars:"전체 만족도",
         starLabels:["불만족","다소 불만족","보통","만족","매우 만족"], good:"좋았던 점 (최대 2개)", bad:"개선되었으면 하는 점 (최대 3개)",
@@ -388,8 +400,8 @@ html,body{margin:0;background:var(--bg)}
         consent:"이 후기를 공식 사이트 등에 익명으로 소개하는 데 동의합니다 (선택)", submit:"보내기",
         doneTitle:"소중한 의견 감사합니다.", thanksP:"보내주신 의견은 모든 직원과 공유하여 서비스에 반영하겠습니다.",
         goodPick:"좋았던 점", badPick:"개선점",
-        ask:"괜찮으시다면 이 후기를 리뷰로 공유해 주시겠어요? 아래 버튼을 누르면 문장이 복사되고 리뷰 작성 화면이 열립니다. 고객님의 한마디가 아직 운젠을 모르는 분들과의 만남으로 이어집니다.",
-        copy:"문장 복사하기", copied:"복사했습니다", destNote:"열린 화면의 리뷰 입력란에 붙여 넣어 주세요.", unset:"(미설정)",
+        ask:"괜찮으시다면 이 후기를 리뷰로 공유해 주시겠어요? 아래 버튼을 누르면 문장이 복사되고 해당 사이트가 열립니다. 고객님의 한마디가 아직 운젠을 모르는 분들과의 만남으로 이어집니다.",
+        copy:"문장 복사하기", copied:"복사했습니다", howTitle:"작성 방법", unset:"(미설정)",
         proto:"시험판입니다. 응답은 전송되지 않습니다."}
   };
 
@@ -651,8 +663,9 @@ html,body{margin:0;background:var(--bg)}
     var markCopied = function(){ copyBtn.textContent = L().copied; };
     copyBtn.onclick = function(){ flushUpdate(); copyText(currentText()).then(markCopied, function(){}); track("copy"); };
     box.appendChild(copyBtn);
-    var row2 = el("div", {"class":"us-dest-row"});
-    DEST_BY_LANG[S.lang].forEach(function(dk){
+    var keys = DEST_BY_LANG[S.lang];
+    var row2 = el("div", {"class":"us-dest-row", style:"--n:" + keys.length});
+    keys.forEach(function(dk){
       var dest = DEST[dk], unset = !dest.url;
       var a = el("a", {"class":"us-ico us-" + dk + (unset ? " us-unset" : ""), href: unset ? "#" : dest.url, target:"_blank", rel:"noopener"},
         '<span class="us-ico-c">' + dest.icon + "</span>" + esc(dest.label[S.lang] + (unset ? L().unset : "")));
@@ -660,7 +673,9 @@ html,body{margin:0;background:var(--bg)}
       row2.appendChild(a);
     });
     box.appendChild(row2);
-    box.appendChild(el("p", {"class":"us-note us-dest-note"}, esc(L().destNote)));
+    var how = el("div", {"class":"us-howto"}, "<p><b>" + esc(L().howTitle) + "</b></p>");
+    keys.forEach(function(dk){ how.appendChild(el("p", null, "<b>" + esc(DEST[dk].label[S.lang]) + "</b>" + (S.lang === "ja" || S.lang === "zh" ? "：" : ": ") + esc(DEST[dk].how[S.lang]))); });
+    box.appendChild(how);
     root.appendChild(box);
   }
 
