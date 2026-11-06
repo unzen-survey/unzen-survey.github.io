@@ -115,7 +115,7 @@ html,body{margin:0;background:var(--bg)}
   // 選択肢: [id, 日本語, 英語ボタン, 繁体字, 韓国語, 英語の文章用（省略時はボタンと同じ）, {ja/zh/ko の文章用}（任意）]
   function O(list){ return list.map(function(x){ return {id:x[0], ja:x[1], en:x[2], zh:x[3], ko:x[4], sen:x[5], s:x[6]}; }); }
   var TERMS = {
-    bath:{ja:"客室の露天風呂",en:"In-room open-air bath",zh:"客房露天溫泉",ko:"객실 노천탕"},
+    bath:{ja:"客室の温泉",en:"In-room hot spring bath",zh:"客房溫泉",ko:"객실 온천"},
     room:{ja:"客室",en:"Room",zh:"客房",ko:"객실"},
     dinner:{ja:"夕食",en:"Dinner",zh:"晚餐",ko:"저녁 식사"},
     breakfast:{ja:"朝食",en:"Breakfast",zh:"早餐",ko:"아침 식사"},
@@ -140,10 +140,10 @@ html,body{margin:0;background:var(--bg)}
           ["anytime","いつでも入れること","Bathing any time","隨時都能泡湯","언제든 들어갈 수 있는 점","being able to bathe whenever we liked"],
           ["water","お湯の質","The water","泉質","온천수의 질","the quality of the water"],
           ["private","プライベート感","Privacy","私密性","프라이빗함","the privacy"]])}],
-        tpl:{ja:["客室の露天風呂は{a}が最高で、滞在中に何度も湯に浸かりました。","部屋付きの露天風呂は、{a}が何より嬉しく、雲仙の温泉を心ゆくまで楽しめました。","客室の露天風呂がとても心地よく、滞在中に何度も入りました。"],
-             en:["The open-air bath in our room was perfect — {a} made it special, and we bathed again and again.","What we loved most about the in-room open-air bath was {a}; we enjoyed Unzen's hot spring to the full.","The open-air bath in the room was so soothing that we used it many times."],
-             zh:["客房露天溫泉最棒的是{a}，住宿期間泡了好幾次。","房內附設的露天溫泉，{a}讓人十分滿意，盡情享受了雲仙的溫泉。","客房的露天溫泉非常舒服，住宿期間泡了好幾次。"],
-             ko:["객실 노천탕에서 특히 좋았던 것은 {a}입니다. 머무는 동안 몇 번이고 들어갔습니다.","객실에 딸린 노천탕의 {a} 덕분에 운젠 온천을 마음껏 즐겼습니다.","객실 노천탕이 너무 편안해서 머무는 동안 여러 번 이용했습니다."]}},
+        tpl:{ja:["客室の温泉は{a}が最高で、滞在中に何度も湯に浸かりました。","部屋付きの温泉は、{a}が何より嬉しく、雲仙の温泉を心ゆくまで楽しめました。","客室の温泉がとても心地よく、滞在中に何度も入りました。"],
+             en:["The hot spring bath in our room was perfect — {a} made it special, and we bathed again and again.","What we loved most about the in-room hot spring bath was {a}; we enjoyed Unzen's hot spring to the full.","The hot spring bath in the room was so soothing that we used it many times."],
+             zh:["客房溫泉最棒的是{a}，住宿期間泡了好幾次。","房內附設的溫泉，{a}讓人十分滿意，盡情享受了雲仙的溫泉。","客房的溫泉非常舒服，住宿期間泡了好幾次。"],
+             ko:["객실 온천에서 특히 좋았던 것은 {a}입니다. 머무는 동안 몇 번이고 들어갔습니다.","객실에 딸린 온천의 {a} 덕분에 운젠 온천을 마음껏 즐겼습니다.","객실 온천이 너무 편안해서 머무는 동안 여러 번 이용했습니다."]}},
       room:{slots:[{k:"a",max:2,q:Q_GOOD,opts:O([
           ["space","広さ","Spaciousness","寬敞空間","넓은 공간","the spacious layout"],
           ["terrace","テラス","The terrace","露台","테라스","the terrace"],
@@ -231,10 +231,10 @@ html,body{margin:0;background:var(--bg)}
           ["clean","清潔さ","Cleanliness","清潔度","청결","cleanliness"],
           ["size","広さ","Size","大小","크기","size"],
           ["guide","使い方の説明","Instructions","使用說明","이용 안내","instructions"]])}],
-        tpl:{ja:["客室の露天風呂は、{a}が少し気になりました。","露天風呂の{a}がもう少し良くなると嬉しいです。","客室の露天風呂について、少し気になる点がありました。"],
-             en:["With the in-room open-air bath, the {a} bothered us a little.","We hope the bath's {a} can be improved.","A few things about the in-room open-air bath bothered us."],
-             zh:["客房露天溫泉的{a}讓人有點在意。","希望露天溫泉的{a}能再改善。","客房的露天溫泉有些地方讓人有點在意。"],
-             ko:["객실 노천탕에서 아쉬웠던 것은 {a}입니다.","노천탕의 {a} 부분이 개선되면 좋겠습니다.","객실 노천탕에 조금 아쉬운 점이 있었습니다."]}},
+        tpl:{ja:["客室の温泉は、{a}が少し気になりました。","客室の温泉の{a}がもう少し良くなると嬉しいです。","客室の温泉について、少し気になる点がありました。"],
+             en:["With the in-room hot spring bath, the {a} bothered us a little.","We hope the bath's {a} can be improved.","A few things about the in-room hot spring bath bothered us."],
+             zh:["客房溫泉的{a}讓人有點在意。","希望客房溫泉的{a}能再改善。","客房的溫泉有些地方讓人有點在意。"],
+             ko:["객실 온천에서 아쉬웠던 것은 {a}입니다.","객실 온천의 {a} 부분이 개선되면 좋겠습니다.","객실 온천에 조금 아쉬운 점이 있었습니다."]}},
       dinner:{slots:[{k:"a",max:2,q:Q_BAD,opts:O([
           ["season","味付け","Seasoning","調味","간","seasoning"],
           ["amount","量","Portion size","份量","양","portion size"],
