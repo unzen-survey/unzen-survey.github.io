@@ -84,8 +84,9 @@ html,body{margin:0;background:var(--bg)}
   "use strict";
 
   // ───── 設定 ─────
-  // 送信先（Google Apps Script のウェブアプリURL）。空のときは送信せず、内容をコンソールに出すだけ（試作）
-  var ENDPOINT = "";
+  // 送信先（Google Apps Script のウェブアプリURL）。回答はスプレッドシート「雲仙九州ホテル アンケート回答」に入る（2026-11-15 本番化）
+  // 空にすると送信せず、内容をコンソールに出すだけになり、「試作版です」の表示が出る
+  var ENDPOINT = "https://script.google.com/macros/s/AKfycbxG4PSmZD_hr_QOn07_PAS1-nTtXju2WK630S8VTx7YuExvgxfQ3JF_XcDokbj-6-vC7w/exec";
   // 口コミのお願いを出す星の数（5＝星5の人だけ）
   var REVIEW_MIN_STARS = 5;
   // 言語ごとの口コミの投稿先（左から順に並ぶ）。url が空のものは「未設定」として薄く表示（試作）
